@@ -17,49 +17,113 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-family: var(--font-sans);
-    background-color: var(--color-obsidian);
+    font-family: 'Outfit', -apple-system, sans-serif;
+    background-color: #0A0D12;
     color: #F3F4F6;
+    /* Prevent horizontal overflow on mobile */
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
+    /* iOS momentum scrolling */
+    -webkit-overflow-scrolling: touch;
+    /* Safe area insets for iPhone X+ notch */
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Prevent tap highlight flash on mobile */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Ensure all images never overflow */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Better touch targets: all interactive elements min 44px */
+  button, a, input, select, textarea {
+    touch-action: manipulation;
   }
 }
 
-.font-serif {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-}
+/* ==========================================
+   TYPOGRAPHY HELPERS
+   ========================================== */
+.font-serif  { font-family: 'Cormorant Garamond', Georgia, serif; }
+.font-cursive { font-family: 'La Belle Aurore', cursive; }
+.font-sans   { font-family: 'Outfit', -apple-system, sans-serif; }
 
-.font-cursive {
-  font-family: 'La Belle Aurore', cursive;
-}
-
-.font-sans {
-  font-family: 'Outfit', -apple-system, sans-serif;
-}
-
-/* Glassmorphism utility */
+/* ==========================================
+   GLASSMORPHISM UTILITIES
+   ========================================== */
 .glass-effect {
-  background: rgba(20, 25, 35, 0.8);
+  background: rgba(20, 25, 35, 0.82);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(197, 160, 89, 0.25);
+  border: 1px solid rgba(197, 160, 89, 0.22);
 }
 
 .glass-effect-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .glass-effect-hover:hover {
-  border-color: rgba(197, 160, 89, 0.6);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  border-color: rgba(197, 160, 89, 0.55);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
 }
 
-/* Mobile-friendly custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
+/* ==========================================
+   SCROLLBAR (desktop only)
+   ========================================== */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #0A0D12; }
+  ::-webkit-scrollbar-thumb { background: #C5A059; border-radius: 3px; }
 }
-::-webkit-scrollbar-track {
-  background: #0A0D12;
+
+/* ==========================================
+   HIDE SCROLLBAR UTILITY (gallery filters)
+   ========================================== */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ==========================================
+   BODY LOCK (when mobile menu / modal open)
+   ========================================== */
+.body-locked {
+  overflow: hidden;
+  /* Prevent scroll-bounce behind the drawer */
+  position: fixed;
+  width: 100%;
 }
-::-webkit-scrollbar-thumb {
-  background: #C5A059;
-  border-radius: 3px;
+
+/* ==========================================
+   MOBILE MENU SLIDE-IN ANIMATION
+   ========================================== */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-slideDown { animation: slideDown 0.2s ease forwards; }
+
+/* ==========================================
+   MODAL SCALE-IN ANIMATION
+   ========================================== */
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.animate-scaleUp { animation: scaleUp 0.2s ease forwards; }
+
+/* ==========================================
+   HERO: disable background-attachment: fixed
+   on iOS (bg-fixed causes blank on Safari)
+   ========================================== */
+@supports (-webkit-touch-callout: none) {
+  .hero-bg {
+    background-attachment: scroll !important;
+  }
 }
