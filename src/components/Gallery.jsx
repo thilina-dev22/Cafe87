@@ -13,134 +13,83 @@ export default function Gallery() {
     : galleryData.filter(img => img.category === filter);
 
   return (
-    <section id="gallery" style={{ padding: '6rem 0', backgroundColor: '#141923' }}>
-      <div className="container">
-        <div className="section-header">
-          <p className="section-subtitle">Visual Experience</p>
-          <h2 className="section-title">Resort & Cafe Gallery</h2>
-          <div className="section-divider"></div>
+    <section id="gallery" className="py-20 bg-[#0A0D12]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <p className="font-cursive text-3xl text-[#C5A059] mb-1">Visual Experience</p>
+          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-white tracking-wide">
+            Resort & Cafe Gallery
+          </h2>
+          <div className="w-16 h-0.5 bg-[#C5A059] mx-auto mt-4"></div>
         </div>
 
-        {/* Filter Tabs */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap', marginBottom: '3rem' }}>
+        {/* Mobile Horizontal Scroll Filter Pills */}
+        <div className="flex items-center justify-start sm:justify-center gap-2 sm:gap-3 overflow-x-auto pb-4 mb-8 no-scrollbar">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              style={{
-                padding: '0.6rem 1.5rem',
-                borderRadius: '30px',
-                border: filter === cat ? '1px solid var(--primary-gold)' : '1px solid rgba(255,255,255,0.1)',
-                backgroundColor: filter === cat ? 'var(--primary-gold)' : 'rgba(10, 13, 18, 0.6)',
-                color: filter === cat ? '#0A0D12' : '#E5E7EB',
-                fontWeight: filter === cat ? '700' : '500',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                fontSize: '0.875rem',
-                letterSpacing: '0.05em'
-              }}
+              className={`px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-300 ${
+                filter === cat
+                  ? 'bg-[#C5A059] text-[#0A0D12] shadow-lg scale-105'
+                  : 'bg-[#141923] text-gray-300 hover:bg-[#C5A059]/20 border border-white/10'
+              }`}
             >
               {cat}
             </button>
           ))}
         </div>
 
-        {/* Masonry / Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-            gap: '1.5rem'
-          }}
-        >
+        {/* Gallery Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {filteredImages.map((item) => (
             <div
               key={item.id}
-              className="glass-card"
-              style={{
-                position: 'relative',
-                height: '260px',
-                overflow: 'hidden',
-                cursor: 'pointer',
-                borderRadius: '10px'
-              }}
               onClick={() => setActiveImage(item)}
+              className="group relative h-64 sm:h-72 rounded-xl overflow-hidden glass-effect cursor-pointer"
             >
               <img
                 src={item.url}
                 alt={item.title}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  transition: 'transform 0.5s ease'
-                }}
-                onMouseEnter={(e) => e.target.style.transform = 'scale(1.08)'}
-                onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              <div
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(to top, rgba(10, 13, 18, 0.85) 0%, transparent 60%)',
-                  opacity: 0.85,
-                  display: 'flex',
-                  alignItems: 'flex-end',
-                  padding: '1.25rem',
-                  transition: 'opacity 0.3s ease'
-                }}
-              >
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-80 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                 <div>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--primary-gold)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                  <span className="text-[10px] uppercase tracking-widest text-[#C5A059] font-bold">
                     {item.category}
                   </span>
-                  <h4 style={{ color: '#FFFFFF', fontSize: '1.1rem', marginTop: '0.2rem' }}>{item.title}</h4>
+                  <h4 className="font-serif text-base font-bold text-white mt-0.5">{item.title}</h4>
                 </div>
               </div>
             </div>
           ))}
         </div>
+
       </div>
 
       {/* Lightbox Modal */}
       {activeImage && (
         <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 3000,
-            backgroundColor: 'rgba(0, 0, 0, 0.9)',
-            backdropFilter: 'blur(10px)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '2rem'
-          }}
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
           onClick={() => setActiveImage(null)}
         >
-          <div style={{ position: 'relative', maxWidth: '900px', width: '100%' }} onClick={(e) => e.stopPropagation()}>
+          <div className="relative max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
             <button
               onClick={() => setActiveImage(null)}
-              style={{
-                position: 'absolute',
-                top: '-3rem',
-                right: 0,
-                background: 'none',
-                border: 'none',
-                color: '#FFFFFF',
-                cursor: 'pointer'
-              }}
+              className="absolute -top-12 right-0 text-white hover:text-[#C5A059] p-2"
             >
-              <X size={32} />
+              <X className="w-8 h-8" />
             </button>
             <img
               src={activeImage.url}
               alt={activeImage.title}
-              style={{ width: '100%', maxHeight: '80vh', objectFit: 'contain', borderRadius: '8px' }}
+              className="w-full max-h-[80vh] object-contain rounded-xl"
             />
-            <div style={{ textAlign: 'center', marginTop: '1rem' }}>
-              <h3 style={{ color: '#FFFFFF', fontSize: '1.5rem' }}>{activeImage.title}</h3>
-              <p style={{ color: 'var(--primary-gold)', fontSize: '0.9rem' }}>{activeImage.category}</p>
+            <div className="text-center mt-4">
+              <h3 className="font-serif text-2xl font-bold text-white">{activeImage.title}</h3>
+              <p className="text-[#C5A059] text-sm uppercase tracking-wider mt-1">{activeImage.category}</p>
             </div>
           </div>
         </div>

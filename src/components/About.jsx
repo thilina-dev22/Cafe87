@@ -1,73 +1,66 @@
 import React from 'react';
-import { Compass, Heart, Anchor, ShieldCheck } from 'lucide-react';
-import { siteConfig } from '../data/siteData';
+import { Compass, Heart } from 'lucide-react';
 
 export default function About() {
   return (
-    <section id="about" style={{ padding: '6rem 0', backgroundColor: '#141923' }}>
-      <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3.5rem', alignItems: 'center' }}>
+    <section id="about" className="py-20 bg-[#141923]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
-          {/* Left Text */}
+          {/* Text Content */}
           <div>
-            <p className="font-accent" style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>Discover</p>
-            <h2 style={{ fontSize: '3rem', color: '#FFFFFF', marginBottom: '1.5rem', lineHeight: 1.15 }}>
+            <p className="font-cursive text-3xl text-[#C5A059] mb-1">Discover</p>
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold text-white tracking-wide leading-tight mb-6">
               The Essence of 87 Ahangama
             </h2>
-            <div style={{ width: '60px', height: '2px', background: 'var(--primary-gold)', marginBottom: '1.5rem' }}></div>
+            <div className="w-16 h-0.5 bg-[#C5A059] mb-6"></div>
 
-            <p style={{ color: '#D1D5DB', fontSize: '1.05rem', lineHeight: '1.8', marginBottom: '1.25rem' }}>
-              Nestled along Sri Lanka's famous southern coastline, <strong>87 Ahangama</strong> is a boutique residence and artisanal cafe created for travelers, surfers, and dreamers seeking serenity.
+            <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-4">
+              Nestled along Sri Lanka's famous southern coastline, <strong className="text-white">87 Ahangama</strong> is a boutique residence and artisanal cafe created for travelers, surfers, and dreamers seeking serenity.
             </p>
 
-            <p style={{ color: '#9CA3AF', fontSize: '0.975rem', lineHeight: '1.8', marginBottom: '2rem' }}>
+            <p className="text-gray-400 text-sm sm:text-base leading-relaxed mb-8">
               From sun-drenched private rooms with plush bedding and high-speed fiber internet to locally sourced tropical coffee and gourmet hoppers, we combine warm island hospitality with modern luxury amenities.
             </p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-              <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                <Compass color="var(--primary-gold)" size={24} style={{ flexShrink: 0 }} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="flex items-start gap-3">
+                <div className="p-3 bg-[#C5A059]/10 rounded-lg text-[#C5A059] shrink-0">
+                  <Compass className="w-6 h-6" />
+                </div>
                 <div>
-                  <h4 style={{ color: '#FFFFFF', fontSize: '1.1rem' }}>Prime Location</h4>
-                  <p style={{ color: '#9CA3AF', fontSize: '0.85rem' }}>Minutes from surf breaks and coastal cafes</p>
+                  <h4 className="font-bold text-white text-base">Prime Location</h4>
+                  <p className="text-gray-400 text-xs mt-1">Minutes from surf breaks and coastal cafes</p>
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                <Heart color="var(--primary-gold)" size={24} style={{ flexShrink: 0 }} />
+              <div className="flex items-start gap-3">
+                <div className="p-3 bg-[#C5A059]/10 rounded-lg text-[#C5A059] shrink-0">
+                  <Heart className="w-6 h-6" />
+                </div>
                 <div>
-                  <h4 style={{ color: '#FFFFFF', fontSize: '1.1rem' }}>Warm Hospitality</h4>
-                  <p style={{ color: '#9CA3AF', fontSize: '0.85rem' }}>Personalized service & local recommendations</p>
+                  <h4 className="font-bold text-white text-base">Warm Hospitality</h4>
+                  <p className="text-gray-400 text-xs mt-1">Personalized service & local recommendations</p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Composite Image Grid */}
-          <div style={{ position: 'relative' }}>
-            <div className="glass-card" style={{ padding: '0.75rem', overflow: 'hidden' }}>
+          {/* Right Image Card */}
+          <div className="relative">
+            <div className="glass-effect rounded-2xl p-3 overflow-hidden shadow-2xl">
               <img
                 src="/assets/images/pexels-freestockpro-11629009-scaled.jpg"
-                alt="87 Ahangama Resort Exterior"
-                style={{ width: '100%', height: '420px', objectFit: 'cover', borderRadius: '8px' }}
+                alt="87 Ahangama Exterior"
+                className="w-full h-80 sm:h-[450px] object-cover rounded-xl"
               />
             </div>
-            
-            <div
-              className="glass-card"
-              style={{
-                position: 'absolute',
-                bottom: '-2rem',
-                left: '-2rem',
-                padding: '1.25rem 1.75rem',
-                border: '1px solid var(--primary-gold)',
-                background: 'rgba(15, 25, 76, 0.9)'
-              }}
-            >
-              <span style={{ fontSize: '2.5rem', fontWeight: '700', color: 'var(--primary-gold)', fontFamily: 'var(--font-heading)' }}>
+
+            <div className="absolute -bottom-6 -left-4 sm:-left-6 bg-[#0F194C]/95 border border-[#C5A059] backdrop-blur-md p-4 sm:p-6 rounded-xl shadow-2xl">
+              <span className="font-serif text-3xl sm:text-4xl font-bold text-[#C5A059]">
                 4.9★
               </span>
-              <p style={{ fontSize: '0.85rem', color: '#E5E7EB', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+              <p className="text-[10px] sm:text-xs text-gray-200 uppercase tracking-widest mt-1">
                 Guest Rating
               </p>
             </div>

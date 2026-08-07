@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Calendar, Phone, MapPin } from 'lucide-react';
+import { Menu, X, Calendar } from 'lucide-react';
 import { siteConfig } from '../data/siteData';
 
 export default function Header({ onBookClick }) {
@@ -7,9 +7,7 @@ export default function Header({ onBookClick }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -25,148 +23,81 @@ export default function Header({ onBookClick }) {
 
   return (
     <header
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 1000,
-        transition: 'all 0.3s ease',
-        backgroundColor: scrolled ? 'rgba(10, 13, 18, 0.95)' : 'rgba(10, 13, 18, 0.6)',
-        backdropFilter: 'blur(10px)',
-        borderBottom: scrolled ? '1px solid rgba(197, 160, 89, 0.2)' : 'none',
-        padding: scrolled ? '0.75rem 0' : '1.25rem 0'
-      }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-[#0A0D12]/95 backdrop-blur-md border-b border-[#C5A059]/20 py-3 shadow-xl'
+          : 'bg-[#0A0D12]/60 backdrop-blur-sm py-5'
+      }`}
     >
-      <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        {/* Logo */}
-        <a href="#hero" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        
+        {/* Brand Logo */}
+        <a href="#hero" className="flex items-center gap-3 group">
           <img
             src={siteConfig.logo}
-            alt="87 Ahangama Logo"
-            style={{ height: '48px', width: 'auto', objectFit: 'contain' }}
-            onError={(e) => {
-              e.target.style.display = 'none';
-            }}
+            alt="87 Ahangama"
+            className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+            onError={(e) => { e.target.style.display = 'none'; }}
           />
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <span style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: '1.5rem',
-              fontWeight: 700,
-              color: '#FFFFFF',
-              letterSpacing: '0.08em',
-              lineHeight: 1.1
-            }}>
+          <div className="flex flex-col">
+            <span className="font-serif text-lg sm:text-xl font-bold text-white tracking-widest leading-none">
               87 AHANGAMA
             </span>
-            <span style={{
-              fontSize: '0.65rem',
-              letterSpacing: '0.2em',
-              color: 'var(--primary-gold)',
-              textTransform: 'uppercase'
-            }}>
-              Boutique Residence & Cafe
+            <span className="text-[10px] tracking-[0.2em] text-[#C5A059] uppercase font-sans mt-0.5">
+              Residence & Cafe
             </span>
           </div>
         </a>
 
-        {/* Desktop Navigation Links */}
-        <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              style={{
-                color: '#E5E7EB',
-                textDecoration: 'none',
-                fontSize: '0.875rem',
-                fontWeight: 500,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                transition: 'color 0.2s ease',
-              }}
-              onMouseEnter={(e) => e.target.style.color = 'var(--primary-gold)'}
-              onMouseLeave={(e) => e.target.style.color = '#E5E7EB'}
+              className="text-gray-300 hover:text-[#C5A059] text-xs font-semibold tracking-widest uppercase transition-colors"
             >
               {link.name}
             </a>
           ))}
         </nav>
 
-        {/* CTA Button */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        {/* Right CTA & Mobile Menu Toggle */}
+        <div className="flex items-center gap-3">
           <button
             onClick={onBookClick}
-            className="btn-gold"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+            className="bg-gradient-to-r from-[#C5A059] to-[#E5C483] hover:from-[#E5C483] hover:to-[#C5A059] text-[#0A0D12] font-bold text-xs sm:text-sm uppercase tracking-wider px-4 sm:px-6 py-2.5 rounded shadow-lg transition-all duration-300 transform active:scale-95 flex items-center gap-2"
           >
-            <Calendar size={16} />
-            <span>Book Now</span>
+            <Calendar className="w-4 h-4" />
+            <span>Book Stay</span>
           </button>
 
-          {/* Mobile Hamburger Toggle */}
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="mobile-toggle"
-            style={{
-              background: 'none',
-              border: 'none',
-              color: '#FFFFFF',
-              cursor: 'pointer',
-              padding: '0.5rem',
-              display: 'none'
-            }}
+            className="lg:hidden text-white p-2 focus:outline-none rounded-lg hover:bg-white/10"
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div
-          style={{
-            position: 'absolute',
-            top: '100%',
-            left: 0,
-            right: 0,
-            backgroundColor: '#0F1319',
-            borderBottom: '1px solid var(--border-color)',
-            padding: '1.5rem',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1.25rem',
-            boxShadow: '0 20px 30px rgba(0,0,0,0.5)'
-          }}
-        >
+        <div className="lg:hidden bg-[#0A0D12] border-b border-[#C5A059]/30 px-6 py-6 space-y-4 shadow-2xl animate-fadeIn">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              style={{
-                color: '#FFFFFF',
-                textDecoration: 'none',
-                fontSize: '1rem',
-                fontWeight: 500,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase'
-              }}
+              className="block text-white text-base font-semibold tracking-wider uppercase hover:text-[#C5A059] transition-colors border-b border-gray-800 pb-2"
             >
               {link.name}
             </a>
           ))}
         </div>
       )}
-
-      <style>{`
-        @media (max-width: 900px) {
-          .desktop-nav { display: none !important; }
-          .mobile-toggle { display: block !important; }
-        }
-      `}</style>
     </header>
   );
 }

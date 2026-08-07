@@ -6,132 +6,78 @@ export default function Hero({ onBookClick }) {
   return (
     <section
       id="hero"
+      className="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-4 bg-cover bg-center bg-no-repeat bg-fixed"
       style={{
-        position: 'relative',
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundImage: `linear-gradient(to bottom, rgba(10, 13, 18, 0.45), rgba(10, 13, 18, 0.85)), url("${siteConfig.heroBg}")`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
-        paddingTop: '5rem'
+        backgroundImage: `linear-gradient(to bottom, rgba(10, 13, 18, 0.45), rgba(10, 13, 18, 0.88)), url("${siteConfig.heroBg}")`
       }}
     >
-      <div className="container" style={{ textCenter: 'center', textAlign: 'center', zIndex: 2 }}>
-        <p className="font-accent" style={{ fontSize: '2.25rem', marginBottom: '0.5rem' }}>
+      <div className="max-w-5xl mx-auto text-center z-10">
+        
+        {/* Subtitle Script */}
+        <p className="font-cursive text-3xl sm:text-4xl text-[#C5A059] mb-2">
           Welcome to
         </p>
 
-        <h1
-          style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(2.75rem, 6vw, 5.5rem)',
-            fontWeight: 700,
-            lineHeight: 1.05,
-            letterSpacing: '0.04em',
-            marginBottom: '1rem',
-            color: '#FFFFFF',
-            textShadow: '0 4px 20px rgba(0,0,0,0.5)'
-          }}
-        >
+        {/* Hero Title */}
+        <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white tracking-wide leading-tight mb-4 drop-shadow-2xl">
           A Tranquil Coastal Escape
         </h1>
 
-        <p
-          style={{
-            fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
-            color: 'var(--secondary-gold)',
-            maxWidth: '750px',
-            margin: '0 auto 2.5rem',
-            fontWeight: 300,
-            letterSpacing: '0.05em'
-          }}
-        >
+        {/* Tagline */}
+        <p className="text-base sm:text-xl text-[#E5C483] max-w-2xl mx-auto mb-8 font-light tracking-wide px-2">
           {siteConfig.subtagline}
         </p>
 
         {/* Action Buttons */}
-        <div
-          style={{
-            display: 'flex',
-            gap: '1.25rem',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            marginBottom: '4rem'
-          }}
-        >
-          <button onClick={onBookClick} className="btn-gold">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 px-4">
+          <button
+            onClick={onBookClick}
+            className="w-full sm:w-auto bg-gradient-to-r from-[#C5A059] to-[#E5C483] hover:from-[#E5C483] hover:to-[#C5A059] text-[#0A0D12] font-bold text-sm uppercase tracking-widest px-8 py-4 rounded shadow-xl transition-all duration-300 transform active:scale-95"
+          >
             Book Your Stay
           </button>
 
-          <a href="#rooms" className="btn-outline">
+          <a
+            href="#rooms"
+            className="w-full sm:w-auto border-2 border-[#C5A059] text-white hover:bg-[#C5A059] hover:text-[#0A0D12] font-bold text-sm uppercase tracking-widest px-8 py-4 rounded transition-all duration-300 transform active:scale-95 text-center"
+          >
             Explore Rooms
           </a>
         </div>
 
-        {/* Feature Highlights Badges */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '1.25rem',
-            maxWidth: '900px',
-            margin: '0 auto',
-            padding: '1.25rem',
-            background: 'rgba(20, 25, 35, 0.65)',
-            backdropFilter: 'blur(10px)',
-            borderRadius: '12px',
-            border: '1px solid rgba(197, 160, 89, 0.25)'
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}>
-            <Sun color="var(--primary-gold)" size={24} />
-            <span style={{ fontSize: '0.9rem', fontWeight: 500 }}>Sun & Moon Rooms</span>
+        {/* Feature Badges Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto p-4 sm:p-5 bg-[#141923]/70 backdrop-blur-md rounded-xl border border-[#C5A059]/30 shadow-2xl">
+          <div className="flex items-center justify-center gap-2 p-2">
+            <Sun className="w-5 h-5 text-[#C5A059] shrink-0" />
+            <span className="text-xs sm:text-sm font-medium text-white">Sun & Moon Rooms</span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}>
-            <Wifi color="var(--primary-gold)" size={24} />
-            <span style={{ fontSize: '0.9rem', fontWeight: 500 }}>High-Speed Wi-Fi</span>
+          <div className="flex items-center justify-center gap-2 p-2">
+            <Wifi className="w-5 h-5 text-[#C5A059] shrink-0" />
+            <span className="text-xs sm:text-sm font-medium text-white">High-Speed Wi-Fi</span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}>
-            <Tv color="var(--primary-gold)" size={24} />
-            <span style={{ fontSize: '0.9rem', fontWeight: 500 }}>Free Netflix & YouTube</span>
+          <div className="flex items-center justify-center gap-2 p-2">
+            <Tv className="w-5 h-5 text-[#C5A059] shrink-0" />
+            <span className="text-xs sm:text-sm font-medium text-white">Free Netflix</span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}>
-            <Coffee color="var(--primary-gold)" size={24} />
-            <span style={{ fontSize: '0.9rem', fontWeight: 500 }}>Artisanal Cafe</span>
+          <div className="flex items-center justify-center gap-2 p-2">
+            <Coffee className="w-5 h-5 text-[#C5A059] shrink-0" />
+            <span className="text-xs sm:text-sm font-medium text-white">Artisanal Cafe</span>
           </div>
         </div>
+
       </div>
 
-      {/* Scroll Down Indicator */}
+      {/* Down Arrow */}
       <a
         href="#rooms"
-        style={{
-          position: 'absolute',
-          bottom: '2rem',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          color: 'var(--primary-gold)',
-          animation: 'bounce 2s infinite',
-          zIndex: 2
-        }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[#C5A059] animate-bounce p-2"
         aria-label="Scroll down"
       >
-        <ChevronDown size={32} />
+        <ChevronDown className="w-8 h-8" />
       </a>
-
-      <style>{`
-        @keyframes bounce {
-          0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
-          40% { transform: translate(-50%, -10px); }
-          60% { transform: translate(-50%, -5px); }
-        }
-      `}</style>
     </section>
   );
 }

@@ -4,44 +4,42 @@ import { MapPin, Phone, Mail, Globe, Share2 } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer style={{ backgroundColor: '#07090C', borderTop: '1px solid rgba(197, 160, 89, 0.2)', padding: '4rem 0 2rem' }}>
-      <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '3rem', marginBottom: '3rem' }}>
+    <footer className="bg-[#05070A] border-t border-[#C5A059]/20 pt-16 pb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-12">
           
-          {/* Brand Col */}
+          {/* Brand */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
-              <img src={siteConfig.logo} alt="87 Ahangama" style={{ height: '44px', width: 'auto' }} />
-              <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', fontWeight: 700, color: '#FFFFFF' }}>
+            <div className="flex items-center gap-3 mb-4">
+              <img src={siteConfig.logo} alt="87 Ahangama" className="h-10 w-auto" />
+              <span className="font-serif text-xl font-bold text-white tracking-wider">
                 87 AHANGAMA
               </span>
             </div>
-            <p style={{ color: '#9CA3AF', fontSize: '0.9rem', lineHeight: '1.7', marginBottom: '1.5rem' }}>
+            <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
               A luxury boutique coastal residence & artisanal cafe in Ahangama, Sri Lanka. Offering sun-filled rooms, ocean views, and warm island hospitality.
             </p>
-            <div style={{ display: 'flex', gap: '1rem' }}>
-              <a href="#" style={{ color: 'var(--primary-gold)', background: 'rgba(197, 160, 89, 0.1)', padding: '0.6rem', borderRadius: '50%' }}>
-                <Globe size={18} />
+            <div className="flex gap-3">
+              <a href="#" className="p-2.5 bg-[#C5A059]/10 text-[#C5A059] rounded-full hover:bg-[#C5A059] hover:text-[#0A0D12] transition-colors">
+                <Globe className="w-4 h-4" />
               </a>
-              <a href="#" style={{ color: 'var(--primary-gold)', background: 'rgba(197, 160, 89, 0.1)', padding: '0.6rem', borderRadius: '50%' }}>
-                <Share2 size={18} />
+              <a href="#" className="p-2.5 bg-[#C5A059]/10 text-[#C5A059] rounded-full hover:bg-[#C5A059] hover:text-[#0A0D12] transition-colors">
+                <Share2 className="w-4 h-4" />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 style={{ color: '#FFFFFF', fontSize: '1.2rem', marginBottom: '1.25rem', borderBottom: '2px solid var(--primary-gold)', display: 'inline-block', paddingBottom: '0.3rem' }}>
-              Quick Navigation
+            <h4 className="font-serif text-lg font-bold text-white mb-4 pb-1 border-b-2 border-[#C5A059] inline-block">
+              Quick Links
             </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            <ul className="space-y-2.5 text-sm text-gray-300">
               {['Home', 'Rooms', 'Cafe & Dining', 'Gallery', 'About Us', 'Contact'].map((item) => (
                 <li key={item}>
                   <a
                     href={`#${item.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`}
-                    style={{ color: '#D1D5DB', textDecoration: 'none', fontSize: '0.9rem', transition: 'color 0.2s' }}
-                    onMouseEnter={(e) => e.target.style.color = 'var(--primary-gold)'}
-                    onMouseLeave={(e) => e.target.style.color = '#D1D5DB'}
+                    className="hover:text-[#C5A059] transition-colors"
                   >
                     {item}
                   </a>
@@ -50,22 +48,22 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact Details */}
+          {/* Contact */}
           <div>
-            <h4 style={{ color: '#FFFFFF', fontSize: '1.2rem', marginBottom: '1.25rem', borderBottom: '2px solid var(--primary-gold)', display: 'inline-block', paddingBottom: '0.3rem' }}>
+            <h4 className="font-serif text-lg font-bold text-white mb-4 pb-1 border-b-2 border-[#C5A059] inline-block">
               Contact Us
             </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '0.9rem', color: '#D1D5DB' }}>
-              <li style={{ display: 'flex', gap: '0.75rem' }}>
-                <MapPin size={18} color="var(--primary-gold)" style={{ flexShrink: 0 }} />
+            <ul className="space-y-3 text-sm text-gray-300">
+              <li className="flex items-start gap-3">
+                <MapPin className="w-5 h-5 text-[#C5A059] shrink-0 mt-0.5" />
                 <span>{siteConfig.address}</span>
               </li>
-              <li style={{ display: 'flex', gap: '0.75rem' }}>
-                <Phone size={18} color="var(--primary-gold)" style={{ flexShrink: 0 }} />
-                <a href={`tel:${siteConfig.phone}`} style={{ color: 'var(--primary-gold)', textDecoration: 'none' }}>{siteConfig.phone}</a>
+              <li className="flex items-center gap-3">
+                <Phone className="w-5 h-5 text-[#C5A059] shrink-0" />
+                <a href={`tel:${siteConfig.phone}`} className="text-[#C5A059] hover:underline">{siteConfig.phone}</a>
               </li>
-              <li style={{ display: 'flex', gap: '0.75rem' }}>
-                <Mail size={18} color="var(--primary-gold)" style={{ flexShrink: 0 }} />
+              <li className="flex items-center gap-3">
+                <Mail className="w-5 h-5 text-[#C5A059] shrink-0" />
                 <span>{siteConfig.email}</span>
               </li>
             </ul>
@@ -73,9 +71,8 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom bar */}
-        <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '1.5rem', textAlign: 'center', fontSize: '0.85rem', color: '#6B7280' }}>
-          &copy; {new Date().getFullYear()} 87 Ahangama. All rights reserved. Built with React & Vite.
+        <div className="border-t border-white/5 pt-6 text-center text-xs text-gray-500">
+          &copy; {new Date().getFullYear()} 87 Ahangama. All rights reserved. Powered by React & Tailwind CSS.
         </div>
       </div>
     </footer>

@@ -14,176 +14,148 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" style={{ padding: '6rem 0', backgroundColor: '#0F1319' }}>
-      <div className="container">
-        <div className="section-header">
-          <p className="section-subtitle">Connect With Us</p>
-          <h2 className="section-title">Contact & Location</h2>
-          <div className="section-divider"></div>
+    <section id="contact" className="py-20 bg-[#0A0D12]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <p className="font-cursive text-3xl text-[#C5A059] mb-1">Connect With Us</p>
+          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-white tracking-wide">
+            Contact & Location
+          </h2>
+          <div className="w-16 h-0.5 bg-[#C5A059] mx-auto mt-4"></div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3rem' }}>
-          {/* Contact Details */}
-          <div className="glass-card" style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            <h3 style={{ fontSize: '1.75rem', color: '#FFFFFF' }}>Contact Information</h3>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
+          
+          {/* Info Card */}
+          <div className="glass-card glass-effect rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+            <div>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-8">
+                Contact Information
+              </h3>
 
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
-              <div style={{ background: 'rgba(197, 160, 89, 0.15)', padding: '0.75rem', borderRadius: '8px' }}>
-                <MapPin color="var(--primary-gold)" size={24} />
-              </div>
-              <div>
-                <h4 style={{ color: '#FFFFFF', fontSize: '1.1rem', marginBottom: '0.25rem' }}>Location</h4>
-                <p style={{ color: '#9CA3AF', fontSize: '0.95rem' }}>{siteConfig.address}</p>
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-[#C5A059]/15 rounded-lg text-[#C5A059] shrink-0">
+                    <MapPin className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-white text-base">Location</h4>
+                    <p className="text-gray-400 text-sm mt-0.5">{siteConfig.address}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-[#C5A059]/15 rounded-lg text-[#C5A059] shrink-0">
+                    <Phone className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-white text-base">Phone & WhatsApp</h4>
+                    <a href={`tel:${siteConfig.phone}`} className="text-[#C5A059] font-semibold hover:underline text-base block mt-0.5">
+                      {siteConfig.phone}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-[#C5A059]/15 rounded-lg text-[#C5A059] shrink-0">
+                    <Mail className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-white text-base">Email Enquiries</h4>
+                    <a href={`mailto:${siteConfig.email}`} className="text-gray-300 hover:text-white text-sm block mt-0.5">
+                      {siteConfig.email}
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
-              <div style={{ background: 'rgba(197, 160, 89, 0.15)', padding: '0.75rem', borderRadius: '8px' }}>
-                <Phone color="var(--primary-gold)" size={24} />
-              </div>
-              <div>
-                <h4 style={{ color: '#FFFFFF', fontSize: '1.1rem', marginBottom: '0.25rem' }}>Phone & WhatsApp</h4>
-                <a href={`tel:${siteConfig.phone}`} style={{ color: 'var(--primary-gold)', textDecoration: 'none', fontSize: '1.05rem', fontWeight: 600 }}>
-                  {siteConfig.phone}
-                </a>
-              </div>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
-              <div style={{ background: 'rgba(197, 160, 89, 0.15)', padding: '0.75rem', borderRadius: '8px' }}>
-                <Mail color="var(--primary-gold)" size={24} />
-              </div>
-              <div>
-                <h4 style={{ color: '#FFFFFF', fontSize: '1.1rem', marginBottom: '0.25rem' }}>Email Enquiries</h4>
-                <a href={`mailto:${siteConfig.email}`} style={{ color: '#E5E7EB', textDecoration: 'none', fontSize: '0.95rem' }}>
-                  {siteConfig.email}
-                </a>
-              </div>
-            </div>
-
-            <div style={{ marginTop: 'auto', paddingTop: '1rem', borderTop: '1px solid rgba(197, 160, 89, 0.2)' }}>
+            <div className="mt-8 pt-6 border-t border-[#C5A059]/20">
               <a
                 href={`https://wa.me/${siteConfig.whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-gold"
-                style={{ width: '100%', justifyContent: 'center' }}
+                className="w-full bg-gradient-to-r from-[#C5A059] to-[#E5C483] hover:from-[#E5C483] hover:to-[#C5A059] text-[#0A0D12] font-bold text-sm uppercase tracking-widest py-3.5 rounded shadow-lg transition-all text-center block"
               >
                 Chat on WhatsApp
               </a>
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="glass-card" style={{ padding: '2.5rem' }}>
-            <h3 style={{ fontSize: '1.75rem', color: '#FFFFFF', marginBottom: '1.5rem' }}>Send Us A Message</h3>
+          {/* Form Card */}
+          <div className="glass-card glass-effect rounded-2xl p-6 sm:p-8">
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-6">
+              Send Us A Message
+            </h3>
 
             {submitted && (
-              <div
-                style={{
-                  backgroundColor: 'rgba(16, 185, 129, 0.15)',
-                  border: '1px solid #10B981',
-                  color: '#10B981',
-                  padding: '1rem',
-                  borderRadius: '8px',
-                  marginBottom: '1.5rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.75rem'
-                }}
-              >
-                <CheckCircle2 size={20} />
-                <span>Thank you! Your message has been sent successfully. We will get back to you shortly.</span>
+              <div className="bg-emerald-500/10 border border-emerald-500/50 text-emerald-400 p-4 rounded-xl mb-6 flex items-center gap-3">
+                <CheckCircle2 className="w-5 h-5 shrink-0" />
+                <span className="text-sm">Thank you! Your message has been sent. We will respond shortly.</span>
               </div>
             )}
 
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label style={{ display: 'block', fontSize: '0.875rem', color: '#D1D5DB', marginBottom: '0.35rem' }}>Your Name</label>
+                <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Your Name</label>
                 <input
                   type="text"
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="e.g. John Smith"
-                  style={{
-                    width: '100%',
-                    padding: '0.85rem',
-                    backgroundColor: 'rgba(10, 13, 18, 0.6)',
-                    border: '1px solid rgba(197, 160, 89, 0.3)',
-                    borderRadius: '6px',
-                    color: '#FFFFFF',
-                    outline: 'none'
-                  }}
+                  className="w-full px-4 py-3 bg-[#0A0D12]/70 border border-[#C5A059]/30 rounded-lg text-white focus:outline-none focus:border-[#C5A059] text-sm"
                 />
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.875rem', color: '#D1D5DB', marginBottom: '0.35rem' }}>Your Email</label>
+                <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Your Email</label>
                 <input
                   type="email"
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="e.g. john@example.com"
-                  style={{
-                    width: '100%',
-                    padding: '0.85rem',
-                    backgroundColor: 'rgba(10, 13, 18, 0.6)',
-                    border: '1px solid rgba(197, 160, 89, 0.3)',
-                    borderRadius: '6px',
-                    color: '#FFFFFF',
-                    outline: 'none'
-                  }}
+                  className="w-full px-4 py-3 bg-[#0A0D12]/70 border border-[#C5A059]/30 rounded-lg text-white focus:outline-none focus:border-[#C5A059] text-sm"
                 />
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.875rem', color: '#D1D5DB', marginBottom: '0.35rem' }}>Subject</label>
+                <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Subject</label>
                 <input
                   type="text"
                   required
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  placeholder="e.g. Room Inquiry / Cafe Reservation"
-                  style={{
-                    width: '100%',
-                    padding: '0.85rem',
-                    backgroundColor: 'rgba(10, 13, 18, 0.6)',
-                    border: '1px solid rgba(197, 160, 89, 0.3)',
-                    borderRadius: '6px',
-                    color: '#FFFFFF',
-                    outline: 'none'
-                  }}
+                  placeholder="Room Inquiry / Cafe Reservation"
+                  className="w-full px-4 py-3 bg-[#0A0D12]/70 border border-[#C5A059]/30 rounded-lg text-white focus:outline-none focus:border-[#C5A059] text-sm"
                 />
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.875rem', color: '#D1D5DB', marginBottom: '0.35rem' }}>Your Message</label>
+                <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Message</label>
                 <textarea
                   rows={4}
                   required
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Tell us about your trip or special requests..."
-                  style={{
-                    width: '100%',
-                    padding: '0.85rem',
-                    backgroundColor: 'rgba(10, 13, 18, 0.6)',
-                    border: '1px solid rgba(197, 160, 89, 0.3)',
-                    borderRadius: '6px',
-                    color: '#FFFFFF',
-                    outline: 'none'
-                  }}
+                  placeholder="How can we help you?"
+                  className="w-full px-4 py-3 bg-[#0A0D12]/70 border border-[#C5A059]/30 rounded-lg text-white focus:outline-none focus:border-[#C5A059] text-sm resize-none"
                 ></textarea>
               </div>
 
-              <button type="submit" className="btn-gold" style={{ width: '100%', justifyContent: 'center' }}>
-                <Send size={18} />
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-[#C5A059] to-[#E5C483] hover:from-[#E5C483] hover:to-[#C5A059] text-[#0A0D12] font-bold text-sm uppercase tracking-widest py-3.5 rounded shadow-lg transition-all flex items-center justify-center gap-2"
+              >
+                <Send className="w-4 h-4" />
                 <span>Send Message</span>
               </button>
             </form>
           </div>
+
         </div>
       </div>
     </section>

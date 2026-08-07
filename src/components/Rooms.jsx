@@ -1,116 +1,91 @@
 import React, { useState } from 'react';
 import { roomsData } from '../data/siteData';
-import { Bed, Users, Maximize, CheckCircle, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Bed, Users, Maximize, CheckCircle, ShieldCheck, X } from 'lucide-react';
 
 export default function Rooms({ onBookRoom }) {
   const [selectedRoom, setSelectedRoom] = useState(null);
 
   return (
-    <section id="rooms" style={{ padding: '6rem 0', backgroundColor: '#0F1319' }}>
-      <div className="container">
-        <div className="section-header">
-          <p className="section-subtitle">Luxury Accommodations</p>
-          <h2 className="section-title">Boutique Rooms & Suites</h2>
-          <div className="section-divider"></div>
+    <section id="rooms" className="py-20 bg-[#0A0D12]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <p className="font-cursive text-3xl text-[#C5A059] mb-1">Luxury Accommodations</p>
+          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-white tracking-wide">
+            Boutique Rooms & Suites
+          </h2>
+          <div className="w-16 h-0.5 bg-[#C5A059] mx-auto mt-4"></div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '2.5rem' }}>
+        {/* Rooms Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {roomsData.map((room) => (
-            <div key={room.id} className="glass-card" style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-              {/* Image Container */}
-              <div style={{ position: 'relative', height: '280px', overflow: 'hidden' }}>
+            <div
+              key={room.id}
+              className="glass-effect glass-effect-hover rounded-xl overflow-hidden flex flex-col group"
+            >
+              {/* Room Image */}
+              <div className="relative h-64 sm:h-72 overflow-hidden">
                 <img
                   src={room.image}
                   alt={room.name}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    transition: 'transform 0.5s ease',
-                  }}
-                  onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-                  onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '1rem',
-                    right: '1rem',
-                    backgroundColor: 'rgba(15, 25, 76, 0.85)',
-                    backdropFilter: 'blur(8px)',
-                    border: '1px solid var(--primary-gold)',
-                    padding: '0.4rem 1rem',
-                    borderRadius: '20px',
-                    color: 'var(--secondary-gold)',
-                    fontWeight: '700',
-                    fontSize: '1rem'
-                  }}
-                >
-                  {room.price} <span style={{ fontSize: '0.75rem', fontWeight: '400', color: '#D1D5DB' }}>{room.pricePeriod}</span>
+                <div className="absolute top-4 right-4 bg-[#0F194C]/90 backdrop-blur-md border border-[#C5A059] px-3 py-1.5 rounded-full text-white font-bold text-sm">
+                  {room.price} <span className="text-xs text-gray-300 font-normal">{room.pricePeriod}</span>
                 </div>
               </div>
 
-              {/* Room Info */}
-              <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                <div style={{ marginBottom: '1rem' }}>
-                  <h3 style={{ fontSize: '1.75rem', color: '#FFFFFF', marginBottom: '0.25rem' }}>{room.name}</h3>
-                  <p style={{ color: 'var(--primary-gold)', fontSize: '0.9rem', fontStyle: 'italic' }}>{room.subtitle}</p>
+              {/* Room Body */}
+              <div className="p-6 flex flex-col flex-grow">
+                <div className="mb-3">
+                  <h3 className="font-serif text-2xl font-bold text-white mb-1">{room.name}</h3>
+                  <p className="text-[#C5A059] text-xs italic">{room.subtitle}</p>
                 </div>
 
-                <p style={{ color: '#9CA3AF', fontSize: '0.925rem', marginBottom: '1.5rem', lineHeight: '1.6' }}>
+                <p className="text-gray-400 text-sm mb-6 line-clamp-3 leading-relaxed">
                   {room.description}
                 </p>
 
-                {/* Specs Grid */}
-                <div
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(3, 1fr)',
-                    gap: '0.75rem',
-                    padding: '0.85rem',
-                    backgroundColor: 'rgba(10, 13, 18, 0.6)',
-                    borderRadius: '8px',
-                    marginBottom: '1.5rem'
-                  }}
-                >
-                  <div style={{ textAlign: 'center' }}>
-                    <Maximize size={16} color="var(--primary-gold)" style={{ margin: '0 auto 0.25rem' }} />
-                    <span style={{ fontSize: '0.75rem', color: '#D1D5DB', display: 'block' }}>{room.size}</span>
+                {/* Specs Box */}
+                <div className="grid grid-cols-3 gap-2 p-3 bg-[#0A0D12]/70 rounded-lg mb-6 text-center border border-white/5">
+                  <div className="flex flex-col items-center">
+                    <Maximize className="w-4 h-4 text-[#C5A059] mb-1" />
+                    <span className="text-xs text-gray-300 font-medium">{room.size}</span>
                   </div>
-                  <div style={{ textAlign: 'center' }}>
-                    <Users size={16} color="var(--primary-gold)" style={{ margin: '0 auto 0.25rem' }} />
-                    <span style={{ fontSize: '0.75rem', color: '#D1D5DB', display: 'block' }}>{room.capacity}</span>
+                  <div className="flex flex-col items-center">
+                    <Users className="w-4 h-4 text-[#C5A059] mb-1" />
+                    <span className="text-xs text-gray-300 font-medium">{room.capacity}</span>
                   </div>
-                  <div style={{ textAlign: 'center' }}>
-                    <Bed size={16} color="var(--primary-gold)" style={{ margin: '0 auto 0.25rem' }} />
-                    <span style={{ fontSize: '0.75rem', color: '#D1D5DB', display: 'block' }}>{room.bed.split(' ')[1]} Bed</span>
+                  <div className="flex flex-col items-center">
+                    <Bed className="w-4 h-4 text-[#C5A059] mb-1" />
+                    <span className="text-xs text-gray-300 font-medium">{room.bed.split(' ')[1]} Bed</span>
                   </div>
                 </div>
 
-                {/* Features Checklist preview */}
-                <div style={{ marginBottom: '1.5rem', flexGrow: 1 }}>
+                {/* Features List */}
+                <div className="space-y-2 mb-6 flex-grow">
                   {room.features.slice(0, 4).map((feature, idx) => (
-                    <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
-                      <CheckCircle size={14} color="var(--primary-gold)" />
-                      <span style={{ fontSize: '0.85rem', color: '#E5E7EB' }}>{feature}</span>
+                    <div key={idx} className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-[#C5A059] shrink-0" />
+                      <span className="text-xs text-gray-300">{feature}</span>
                     </div>
                   ))}
                 </div>
 
-                {/* CTA Buttons */}
-                <div style={{ display: 'flex', gap: '0.75rem' }}>
+                {/* Action Buttons */}
+                <div className="grid grid-cols-2 gap-3 mt-auto">
                   <button
                     onClick={() => setSelectedRoom(room)}
-                    className="btn-outline"
-                    style={{ flex: 1, padding: '0.65rem 0.5rem', fontSize: '0.8rem', justifyContent: 'center' }}
+                    className="w-full border border-[#C5A059] text-white hover:bg-[#C5A059] hover:text-[#0A0D12] text-xs uppercase font-bold py-2.5 rounded transition-all text-center"
                   >
                     View Details
                   </button>
 
                   <button
                     onClick={() => onBookRoom(room)}
-                    className="btn-gold"
-                    style={{ flex: 1, padding: '0.65rem 0.5rem', fontSize: '0.8rem', justifyContent: 'center' }}
+                    className="w-full bg-gradient-to-r from-[#C5A059] to-[#E5C483] hover:from-[#E5C483] hover:to-[#C5A059] text-[#0A0D12] text-xs uppercase font-bold py-2.5 rounded transition-all text-center"
                   >
                     Book Now
                   </button>
@@ -119,90 +94,69 @@ export default function Rooms({ onBookRoom }) {
             </div>
           ))}
         </div>
+
       </div>
 
       {/* Room Details Modal */}
       {selectedRoom && (
         <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 2000,
-            backgroundColor: 'rgba(0, 0, 0, 0.85)',
-            backdropFilter: 'blur(8px)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '1.5rem'
-          }}
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
           onClick={() => setSelectedRoom(null)}
         >
           <div
-            className="glass-card"
-            style={{
-              maxWidth: '750px',
-              width: '100%',
-              maxHeight: '90vh',
-              overflowY: 'auto',
-              padding: '2rem',
-              position: 'relative'
-            }}
+            className="glass-effect rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative animate-scaleUp"
             onClick={(e) => e.stopPropagation()}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
+            <div className="flex items-start justify-between mb-4">
               <div>
-                <h2 style={{ fontSize: '2.25rem', color: '#FFFFFF' }}>{selectedRoom.name}</h2>
-                <p style={{ color: 'var(--primary-gold)', fontSize: '1rem' }}>{selectedRoom.subtitle}</p>
+                <h3 className="font-serif text-3xl font-bold text-white">{selectedRoom.name}</h3>
+                <p className="text-[#C5A059] text-sm">{selectedRoom.subtitle}</p>
               </div>
               <button
                 onClick={() => setSelectedRoom(null)}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  color: '#9CA3AF',
-                  fontSize: '1.5rem',
-                  cursor: 'pointer',
-                  padding: '0.5rem'
-                }}
+                className="text-gray-400 hover:text-white p-2"
               >
-                ✕
+                <X className="w-6 h-6" />
               </button>
             </div>
 
             <img
               src={selectedRoom.image}
               alt={selectedRoom.name}
-              style={{ width: '100%', height: '320px', objectFit: 'cover', borderRadius: '8px', marginBottom: '1.5rem' }}
+              className="w-full h-64 sm:h-80 object-cover rounded-xl mb-6"
             />
 
-            <h4 style={{ color: 'var(--primary-gold)', marginBottom: '0.5rem' }}>Room Overview</h4>
-            <p style={{ color: '#D1D5DB', marginBottom: '1.5rem', lineHeight: '1.7' }}>
+            <h4 className="font-serif text-xl text-[#C5A059] mb-2">Room Overview</h4>
+            <p className="text-gray-300 text-sm leading-relaxed mb-6">
               {selectedRoom.description}
             </p>
 
-            <h4 style={{ color: 'var(--primary-gold)', marginBottom: '0.75rem' }}>Included Amenities & Facilities</h4>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '0.75rem', marginBottom: '2rem' }}>
+            <h4 className="font-serif text-xl text-[#C5A059] mb-3">Included Amenities</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
               {selectedRoom.features.map((feature, idx) => (
-                <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <ShieldCheck size={16} color="var(--primary-gold)" />
-                  <span style={{ fontSize: '0.9rem', color: '#F3F4F6' }}>{feature}</span>
+                <div key={idx} className="flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-[#C5A059] shrink-0" />
+                  <span className="text-xs text-gray-200">{feature}</span>
                 </div>
               ))}
             </div>
 
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end' }}>
-              <button onClick={() => setSelectedRoom(null)} className="btn-outline">
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => setSelectedRoom(null)}
+                className="px-6 py-2.5 border border-[#C5A059] text-white hover:bg-[#C5A059] hover:text-[#0A0D12] text-xs font-bold uppercase rounded"
+              >
                 Close
               </button>
               <button
                 onClick={() => {
-                  const roomToBook = selectedRoom;
+                  const target = selectedRoom;
                   setSelectedRoom(null);
-                  onBookRoom(roomToBook);
+                  onBookRoom(target);
                 }}
-                className="btn-gold"
+                className="px-6 py-2.5 bg-gradient-to-r from-[#C5A059] to-[#E5C483] text-[#0A0D12] text-xs font-bold uppercase rounded"
               >
-                Proceed to Booking
+                Book This Room
               </button>
             </div>
           </div>

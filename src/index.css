@@ -1,171 +1,65 @@
-:root {
-  --primary-gold: #C5A059;
-  --primary-gold-hover: #B28E46;
-  --secondary-gold: #E5C483;
-  --dark-obsidian: #0A0D12;
-  --dark-surface: #141923;
-  --dark-card: #1C2331;
-  --navy-accent: #0F194C;
-  --light-bg: #F8F6F1;
-  --light-surface: #FFFFFF;
-  --text-dark: #1A1E24;
-  --text-muted: #6B7280;
-  --text-light: #F3F4F6;
-  --border-color: rgba(197, 160, 89, 0.25);
+@import "tailwindcss";
 
-  --font-heading: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'Outfit', -apple-system, sans-serif;
-  --font-accent: 'La Belle Aurore', cursive;
+@theme {
+  --color-gold-500: #C5A059;
+  --color-gold-400: #E5C483;
+  --color-gold-600: #B28E46;
+  --color-obsidian: #0A0D12;
+  --color-surface-dark: #141923;
+  --color-card-dark: #1C2331;
+  --color-navy: #0F194C;
 
-  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --shadow-luxury: 0 20px 40px rgba(0, 0, 0, 0.15);
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Outfit', -apple-system, sans-serif;
+  --font-cursive: 'La Belle Aurore', cursive;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-}
-
-body {
-  font-family: var(--font-body);
-  background-color: var(--dark-obsidian);
-  color: var(--text-light);
-  line-height: 1.6;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* Typography Utilities */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: #FFFFFF;
-}
-
-.font-accent {
-  font-family: var(--font-accent);
-  color: var(--primary-gold);
-}
-
-/* Container */
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-/* Buttons */
-.btn-gold {
-  background: linear-gradient(135deg, var(--primary-gold) 0%, var(--secondary-gold) 100%);
-  color: var(--dark-obsidian);
-  font-weight: 600;
-  padding: 0.85rem 1.85rem;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.875rem;
-  transition: var(--transition-smooth);
-  box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
-  text-decoration: none;
-}
-
-.btn-gold:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(197, 160, 89, 0.5);
-  background: linear-gradient(135deg, var(--secondary-gold) 0%, var(--primary-gold) 100%);
-}
-
-.btn-outline {
-  background: transparent;
-  color: #FFFFFF;
-  border: 1.5px solid var(--primary-gold);
-  font-weight: 600;
-  padding: 0.85rem 1.85rem;
-  border-radius: 4px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.875rem;
-  transition: var(--transition-smooth);
-  text-decoration: none;
-}
-
-.btn-outline:hover {
-  background: var(--primary-gold);
-  color: var(--dark-obsidian);
-  transform: translateY(-2px);
-}
-
-/* Glassmorphism Card */
-.glass-card {
-  background: rgba(20, 25, 35, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  transition: var(--transition-smooth);
-}
-
-.glass-card:hover {
-  border-color: rgba(197, 160, 89, 0.6);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-}
-
-/* Section Header */
-.section-header {
-  text-align: center;
-  margin-bottom: 3.5rem;
-}
-
-.section-subtitle {
-  font-family: var(--font-accent);
-  font-size: 1.75rem;
-  color: var(--primary-gold);
-  margin-bottom: 0.5rem;
-}
-
-.section-title {
-  font-size: 3rem;
-  color: #FFFFFF;
-  text-transform: capitalize;
-}
-
-@media (max-width: 768px) {
-  .section-title {
-    font-size: 2.25rem;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    background-color: var(--color-obsidian);
+    color: #F3F4F6;
   }
 }
 
-.section-divider {
-  width: 60px;
-  height: 2px;
-  background: var(--primary-gold);
-  margin: 1rem auto 0;
+.font-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
 }
 
-/* Custom Scrollbar */
+.font-cursive {
+  font-family: 'La Belle Aurore', cursive;
+}
+
+.font-sans {
+  font-family: 'Outfit', -apple-system, sans-serif;
+}
+
+/* Glassmorphism utility */
+.glass-effect {
+  background: rgba(20, 25, 35, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(197, 160, 89, 0.25);
+}
+
+.glass-effect-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-effect-hover:hover {
+  border-color: rgba(197, 160, 89, 0.6);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Mobile-friendly custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--dark-obsidian);
+  background: #0A0D12;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-gold);
-  border-radius: 4px;
+  background: #C5A059;
+  border-radius: 3px;
 }

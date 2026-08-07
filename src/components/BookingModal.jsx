@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { roomsData } from '../data/siteData';
-import { Calendar, Users, CheckCircle, X } from 'lucide-react';
+import { CheckCircle, X } from 'lucide-react';
 
 export default function BookingModal({ isOpen, onClose, selectedRoom }) {
   const [room, setRoom] = useState(selectedRoom ? selectedRoom.id : roomsData[0].id);
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
-  const [guests, setGuests] = useState('2');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -20,66 +19,36 @@ export default function BookingModal({ isOpen, onClose, selectedRoom }) {
 
   return (
     <div
-      style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 3000,
-        backgroundColor: 'rgba(0, 0, 0, 0.85)',
-        backdropFilter: 'blur(8px)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '1.5rem'
-      }}
+      className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4"
       onClick={onClose}
     >
       <div
-        className="glass-card"
-        style={{
-          maxWidth: '600px',
-          width: '100%',
-          padding: '2.5rem',
-          position: 'relative'
-        }}
+        className="glass-effect rounded-2xl max-w-xl w-full p-6 sm:p-8 relative"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          style={{
-            position: 'absolute',
-            top: '1.25rem',
-            right: '1.25rem',
-            background: 'none',
-            border: 'none',
-            color: '#9CA3AF',
-            cursor: 'pointer'
-          }}
+          className="absolute top-4 right-4 text-gray-400 hover:text-white p-2"
         >
-          <X size={24} />
+          <X className="w-6 h-6" />
         </button>
 
         {!submitted ? (
           <>
-            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-              <p className="font-accent" style={{ fontSize: '1.75rem' }}>Direct Reservation</p>
-              <h2 style={{ fontSize: '2.25rem', color: '#FFFFFF' }}>Book Your Stay at 87 Ahangama</h2>
+            <div className="text-center mb-6">
+              <p className="font-cursive text-2xl text-[#C5A059] mb-1">Direct Reservation</p>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white">
+                Book Your Stay at 87 Ahangama
+              </h3>
             </div>
 
-            <form onSubmit={handleBooking} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <form onSubmit={handleBooking} className="space-y-4">
               <div>
-                <label style={{ display: 'block', fontSize: '0.875rem', color: '#D1D5DB', marginBottom: '0.35rem' }}>Select Room</label>
+                <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Select Room</label>
                 <select
                   value={room}
                   onChange={(e) => setRoom(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '0.85rem',
-                    backgroundColor: '#0F1319',
-                    border: '1px solid rgba(197, 160, 89, 0.3)',
-                    borderRadius: '6px',
-                    color: '#FFFFFF',
-                    outline: 'none'
-                  }}
+                  className="w-full px-4 py-3 bg-[#0A0D12] border border-[#C5A059]/30 rounded-lg text-white text-sm focus:outline-none focus:border-[#C5A059]"
                 >
                   {roomsData.map((r) => (
                     <option key={r.id} value={r.id}>
@@ -89,101 +58,75 @@ export default function BookingModal({ isOpen, onClose, selectedRoom }) {
                 </select>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.875rem', color: '#D1D5DB', marginBottom: '0.35rem' }}>Check-In Date</label>
+                  <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Check-In</label>
                   <input
                     type="date"
                     required
                     value={checkIn}
                     onChange={(e) => setCheckIn(e.target.value)}
-                    style={{
-                      width: '100%',
-                      padding: '0.85rem',
-                      backgroundColor: '#0F1319',
-                      border: '1px solid rgba(197, 160, 89, 0.3)',
-                      borderRadius: '6px',
-                      color: '#FFFFFF',
-                      outline: 'none'
-                    }}
+                    className="w-full px-4 py-3 bg-[#0A0D12] border border-[#C5A059]/30 rounded-lg text-white text-sm focus:outline-none focus:border-[#C5A059]"
                   />
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.875rem', color: '#D1D5DB', marginBottom: '0.35rem' }}>Check-Out Date</label>
+                  <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Check-Out</label>
                   <input
                     type="date"
                     required
                     value={checkOut}
                     onChange={(e) => setCheckOut(e.target.value)}
-                    style={{
-                      width: '100%',
-                      padding: '0.85rem',
-                      backgroundColor: '#0F1319',
-                      border: '1px solid rgba(197, 160, 89, 0.3)',
-                      borderRadius: '6px',
-                      color: '#FFFFFF',
-                      outline: 'none'
-                    }}
+                    className="w-full px-4 py-3 bg-[#0A0D12] border border-[#C5A059]/30 rounded-lg text-white text-sm focus:outline-none focus:border-[#C5A059]"
                   />
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.875rem', color: '#D1D5DB', marginBottom: '0.35rem' }}>Your Full Name</label>
+                  <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Full Name</label>
                   <input
                     type="text"
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Guest Name"
-                    style={{
-                      width: '100%',
-                      padding: '0.85rem',
-                      backgroundColor: '#0F1319',
-                      border: '1px solid rgba(197, 160, 89, 0.3)',
-                      borderRadius: '6px',
-                      color: '#FFFFFF',
-                      outline: 'none'
-                    }}
+                    className="w-full px-4 py-3 bg-[#0A0D12] border border-[#C5A059]/30 rounded-lg text-white text-sm focus:outline-none focus:border-[#C5A059]"
                   />
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.875rem', color: '#D1D5DB', marginBottom: '0.35rem' }}>WhatsApp / Phone</label>
+                  <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">WhatsApp / Phone</label>
                   <input
                     type="tel"
                     required
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="+94 ..."
-                    style={{
-                      width: '100%',
-                      padding: '0.85rem',
-                      backgroundColor: '#0F1319',
-                      border: '1px solid rgba(197, 160, 89, 0.3)',
-                      borderRadius: '6px',
-                      color: '#FFFFFF',
-                      outline: 'none'
-                    }}
+                    className="w-full px-4 py-3 bg-[#0A0D12] border border-[#C5A059]/30 rounded-lg text-white text-sm focus:outline-none focus:border-[#C5A059]"
                   />
                 </div>
               </div>
 
-              <button type="submit" className="btn-gold" style={{ width: '100%', justifyContent: 'center', marginTop: '1rem' }}>
+              <button
+                type="submit"
+                className="w-full mt-4 bg-gradient-to-r from-[#C5A059] to-[#E5C483] hover:from-[#E5C483] hover:to-[#C5A059] text-[#0A0D12] font-bold text-sm uppercase tracking-widest py-3.5 rounded shadow-lg transition-all"
+              >
                 Confirm Reservation Request
               </button>
             </form>
           </>
         ) : (
-          <div style={{ textAlign: 'center', padding: '2rem 0' }}>
-            <CheckCircle size={64} color="var(--primary-gold)" style={{ margin: '0 auto 1.5rem' }} />
-            <h2 style={{ fontSize: '2rem', color: '#FFFFFF', marginBottom: '0.75rem' }}>Reservation Received!</h2>
-            <p style={{ color: '#D1D5DB', marginBottom: '2rem', lineHeight: '1.6' }}>
-              Thank you, <strong>{name}</strong>! We have received your booking request for check-in on <strong>{checkIn}</strong>. Our team will contact you via WhatsApp at <strong>{phone}</strong> shortly.
+          <div className="text-center py-6">
+            <CheckCircle className="w-16 h-16 text-[#C5A059] mx-auto mb-4" />
+            <h3 className="font-serif text-2xl font-bold text-white mb-2">Reservation Received!</h3>
+            <p className="text-gray-300 text-sm leading-relaxed mb-6">
+              Thank you, <strong className="text-white">{name}</strong>! We have received your booking request for <strong className="text-white">{checkIn}</strong>. Our reception team will message you at <strong className="text-white">{phone}</strong> shortly.
             </p>
-            <button onClick={onClose} className="btn-gold">
+            <button
+              onClick={onClose}
+              className="bg-gradient-to-r from-[#C5A059] to-[#E5C483] text-[#0A0D12] font-bold text-xs uppercase tracking-widest px-8 py-3 rounded"
+            >
               Done
             </button>
           </div>
