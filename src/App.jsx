@@ -19,7 +19,7 @@ export default function App() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: 'var(--dark-obsidian)' }}>
+    <div className="min-h-screen bg-[#0A0D12] overflow-x-hidden">
       <Header onBookClick={() => handleOpenBooking(null)} />
       <main>
         <Hero onBookClick={() => handleOpenBooking(null)} />
