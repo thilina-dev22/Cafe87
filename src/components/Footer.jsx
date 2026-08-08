@@ -1,6 +1,6 @@
 import React from 'react';
 import { siteConfig } from '../data/siteData';
-import { MapPin, Phone, Mail, Globe, Share2 } from 'lucide-react';
+import { MapPin, Phone, Mail, Globe, Share2, Heart } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -71,8 +71,19 @@ export default function Footer() {
 
         </div>
 
-        <div className="border-t border-white/5 pt-6 text-center text-xs text-gray-500">
-          &copy; {new Date().getFullYear()} 87 Ahangama. All rights reserved. Powered by React & Tailwind CSS.
+        <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+          <p>&copy; {new Date().getFullYear()} 87 Ahangama. All rights reserved.</p>
+          <p className="flex items-center gap-1">
+            Developed with <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500 mx-0.5 inline" /> by{' '}
+            <a
+              href="https://paradisecrew.site/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C5A059] hover:underline font-medium transition-colors"
+            >
+              Paradise Crew - Tech and Hospitality
+            </a>
+          </p>
         </div>
       </div>
     </footer>
