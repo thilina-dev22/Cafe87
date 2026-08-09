@@ -25,7 +25,7 @@ export const roomsData = [
     name: "Sun Room",
     subtitle: "Bright & Sunny Private Suite",
     description: "Sun Room is a bright, air-conditioned private suite featuring a solid wood checkered headboard, 1 extra-large double bed with swan towel art, ceiling fan, and a unique artisanal earthen en-suite bathroom.",
-    price: "From $29",
+    price: "From $24",
     pricePeriod: "per night",
     size: "148 sq ft",
     capacity: "2 Guests",
@@ -39,6 +39,11 @@ export const roomsData = [
       "/assets/images/real/private-patio.jpg",
       "/assets/images/real/bathroom-1.jpg",
       "/assets/images/real/bathroom-2.jpg"
+    ],
+    highlights: [
+      "No prepayment needed — Pay at property",
+      "Breakfast included options available",
+      "Ground floor with private entrance"
     ],
     features: [
       "1 Extra-large double bed with swan towel art",
@@ -61,7 +66,7 @@ export const roomsData = [
     name: "Moon Room",
     subtitle: "Four-Poster Canopy Suite",
     description: "Moon Room is a romantic air-conditioned haven featuring a solid four-poster teak canopy bed with elegant white mosquito net drapery, dark blue linen, mini-bar coffee station, and a luxury earthen bathroom.",
-    price: "From $29",
+    price: "From $24",
     pricePeriod: "per night",
     size: "165 sq ft",
     capacity: "2 Guests",
@@ -76,6 +81,11 @@ export const roomsData = [
       "/assets/images/real/private-patio.jpg",
       "/assets/images/real/bathroom-1.jpg",
       "/assets/images/real/bathroom-2.jpg"
+    ],
+    highlights: [
+      "No prepayment needed — Pay at property",
+      "Breakfast included options available",
+      "Ground floor with private entrance"
     ],
     features: [
       "1 Four-poster teak double bed with net drapery",

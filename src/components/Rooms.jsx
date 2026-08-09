@@ -125,6 +125,18 @@ export default function Rooms({ onBookRoom }) {
                   </div>
                 </div>
 
+                {/* Booking policy highlights */}
+                {room.highlights && (
+                  <div className="mb-4 space-y-1.5 bg-[#003580]/15 p-2.5 rounded-lg border border-[#003580]/40">
+                    {room.highlights.map((h, i) => (
+                      <div key={i} className="flex items-center gap-2 text-[11px] text-[#ECC46C] font-semibold">
+                        <Sparkles className="w-3 h-3 text-[#ECC46C] shrink-0" />
+                        <span>{h}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 {/* Features */}
                 <div className="space-y-2.5 mb-6 flex-grow">
                   {room.features.slice(0, 5).map((feature, idx) => (
