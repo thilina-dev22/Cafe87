@@ -36,6 +36,7 @@ export const roomsData = [
     image: "/assets/images/real/sun-room.jpg",
     gallery: [
       "/assets/images/real/sun-room.jpg",
+      "/assets/images/real/private-patio.jpg",
       "/assets/images/real/bathroom-1.jpg",
       "/assets/images/real/bathroom-2.jpg"
     ],
@@ -71,6 +72,8 @@ export const roomsData = [
     image: "/assets/images/real/moon-room.jpg",
     gallery: [
       "/assets/images/real/moon-room.jpg",
+      "/assets/images/real/moon-room-interior.jpg",
+      "/assets/images/real/private-patio.jpg",
       "/assets/images/real/bathroom-1.jpg",
       "/assets/images/real/bathroom-2.jpg"
     ],
@@ -93,12 +96,14 @@ export const roomsData = [
 ];
 
 export const galleryData = [
-  { id: 1, title: "87 Ahangama Front Entrance", category: "Resort", url: "/assets/images/real/property-exterior.jpg" },
+  { id: 1, title: "87 Ahangama Property Exterior & Board", category: "Resort", url: "/assets/images/real/property-exterior.jpg" },
   { id: 2, title: "Sun Room Deluxe Suite", category: "Rooms", url: "/assets/images/real/sun-room.jpg" },
-  { id: 3, title: "Moon Room Four-Poster Canopy Bed", category: "Rooms", url: "/assets/images/real/moon-room.jpg" },
-  { id: 4, title: "Artisanal Earthen Bathroom & Sunburst Mirror", category: "Bathrooms", url: "/assets/images/real/bathroom-1.jpg" },
-  { id: 5, title: "Luxury Bath Vanity & Bamboo Ladder", category: "Bathrooms", url: "/assets/images/real/bathroom-2.jpg" },
-  { id: 6, title: "Artisanal Cafe & Dining", category: "Cafe", url: "/assets/images/WhatsApp-Image-2025-09-07-at-4.25.22-PM.jpeg" }
+  { id: 3, title: "Moon Room Four-Poster Canopy Suite", category: "Rooms", url: "/assets/images/real/moon-room.jpg" },
+  { id: 4, title: "Moon Room Air-Conditioned Suite Interior", category: "Rooms", url: "/assets/images/real/moon-room-interior.jpg" },
+  { id: 5, title: "Tropical Private Entry & Coral Stone Patio", category: "Resort", url: "/assets/images/real/private-patio.jpg" },
+  { id: 6, title: "Cozy Night Garden Cafe & Fairy Lights", category: "Cafe", url: "/assets/images/real/night-garden-dining.jpg" },
+  { id: 7, title: "Artisanal Earthen Bathroom & Sunburst Mirror", category: "Bathrooms", url: "/assets/images/real/bathroom-1.jpg" },
+  { id: 8, title: "Luxury Bath Vanity & Bamboo Towel Rack", category: "Bathrooms", url: "/assets/images/real/bathroom-2.jpg" }
 ];
 
 export const cafeMenuFull = [
