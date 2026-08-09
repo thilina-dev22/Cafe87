@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { roomsData } from '../data/siteData';
-import { Bed, Users, Maximize, CheckCircle, ShieldCheck, X } from 'lucide-react';
+import { Bed, Users, Maximize, CheckCircle, ShieldCheck, X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 
 export default function Rooms({ onBookRoom }) {
   const [selectedRoom, setSelectedRoom] = useState(null);
+  const [activeImageIdx, setActiveImageIdx] = useState(0);
+
+  // Touch Swipe State for Modal Gallery
+  const [touchStartX, setTouchStartX] = useState(null);
+  const [touchEndX, setTouchEndX] = useState(null);
 
   const openModal = (room) => {
     setSelectedRoom(room);
+    setActiveImageIdx(0);
     document.body.classList.add('body-locked');
   };
 
@@ -15,28 +21,70 @@ export default function Rooms({ onBookRoom }) {
     document.body.classList.remove('body-locked');
   };
 
+  const nextImage = (e) => {
+    if (e) e.stopPropagation();
+    if (!selectedRoom) return;
+    if (activeImageIdx < selectedRoom.gallery.length - 1) {
+      setActiveImageIdx(activeImageIdx + 1);
+    } else {
+      setActiveImageIdx(0);
+    }
+  };
+
+  const prevImage = (e) => {
+    if (e) e.stopPropagation();
+    if (!selectedRoom) return;
+    if (activeImageIdx > 0) {
+      setActiveImageIdx(activeImageIdx - 1);
+    } else {
+      setActiveImageIdx(selectedRoom.gallery.length - 1);
+    }
+  };
+
+  // Touch Swipe Handlers for Room Modal Gallery
+  const minSwipeDistance = 50;
+
+  const handleTouchStart = (e) => {
+    setTouchEndX(null);
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX || !touchEndX) return;
+    const distance = touchStartX - touchEndX;
+    if (distance > minSwipeDistance) {
+      nextImage();
+    } else if (distance < -minSwipeDistance) {
+      prevImage();
+    }
+  };
+
   return (
-    <section id="rooms" className="py-16 sm:py-20 bg-[#0A0D12]">
+    <section id="rooms" className="py-16 sm:py-24 bg-[#0A0F29] border-t border-[#ECC46C]/15 select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
         <div className="text-center mb-10 sm:mb-16">
-          <p className="font-cursive text-2xl sm:text-3xl text-[#C5A059] mb-1">Luxury Accommodations</p>
+          <p className="font-cursive text-2xl sm:text-3xl text-[#ECC46C] mb-1">Luxury Accommodations</p>
           <h2 className="font-serif font-bold text-white tracking-wide text-[clamp(1.7rem,5vw,3rem)]">
             Boutique Rooms &amp; Suites
           </h2>
-          <div className="w-14 h-0.5 bg-[#C5A059] mx-auto mt-3"></div>
+          <div className="w-14 h-0.5 bg-[#ECC46C] mx-auto mt-3"></div>
         </div>
 
         {/* Rooms Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {roomsData.map((room) => (
             <div
               key={room.id}
-              className="glass-effect glass-effect-hover rounded-xl overflow-hidden flex flex-col group"
+              className="glass-effect glass-effect-hover rounded-2xl overflow-hidden flex flex-col group border border-[#ECC46C]/25 shadow-2xl transition-all"
             >
               {/* Room Image */}
-              <div className="relative h-56 sm:h-64 overflow-hidden">
+              <div className="relative h-64 sm:h-72 overflow-hidden">
                 <img
                   src={room.image}
                   alt={room.name}
@@ -44,62 +92,62 @@ export default function Rooms({ onBookRoom }) {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 {/* Price badge */}
-                <div className="absolute top-3 right-3 bg-[#0F194C]/90 backdrop-blur-md border border-[#C5A059] px-3 py-1 rounded-full text-white font-bold text-sm leading-snug">
-                  {room.price}
+                <div className="absolute top-4 right-4 bg-[#0A0F29]/90 backdrop-blur-md border border-[#ECC46C] px-3.5 py-1.5 rounded-full text-white font-bold text-sm shadow-xl">
+                  <span className="text-[#ECC46C]">{room.price}</span>
                   <span className="text-[10px] text-gray-300 font-normal ml-1">{room.pricePeriod}</span>
                 </div>
               </div>
 
               {/* Card body */}
-              <div className="p-5 sm:p-6 flex flex-col flex-grow">
-                <div className="mb-2">
-                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-white mb-0.5">{room.name}</h3>
-                  <p className="text-[#C5A059] text-xs italic">{room.subtitle}</p>
+              <div className="p-6 sm:p-8 flex flex-col flex-grow">
+                <div className="mb-3">
+                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-0.5">{room.name}</h3>
+                  <p className="text-[#ECC46C] text-xs font-semibold tracking-wide uppercase">{room.subtitle}</p>
                 </div>
 
-                <p className="text-gray-400 text-sm mb-5 line-clamp-3 leading-relaxed">
+                <p className="text-gray-300 text-sm mb-6 leading-relaxed">
                   {room.description}
                 </p>
 
                 {/* Specs row */}
-                <div className="grid grid-cols-3 gap-1.5 p-2.5 bg-[#0A0D12]/70 rounded-lg mb-5 text-center border border-white/5">
+                <div className="grid grid-cols-3 gap-2 p-3 bg-[#0A0F29]/80 rounded-xl mb-6 text-center border border-[#ECC46C]/20">
                   <div className="flex flex-col items-center gap-1 py-1">
-                    <Maximize className="w-4 h-4 text-[#C5A059]" />
-                    <span className="text-[11px] text-gray-300 font-medium leading-tight">{room.size}</span>
+                    <Maximize className="w-4 h-4 text-[#ECC46C]" />
+                    <span className="text-xs text-gray-200 font-medium">{room.size}</span>
                   </div>
                   <div className="flex flex-col items-center gap-1 py-1">
-                    <Users className="w-4 h-4 text-[#C5A059]" />
-                    <span className="text-[11px] text-gray-300 font-medium leading-tight">{room.capacity}</span>
+                    <Users className="w-4 h-4 text-[#ECC46C]" />
+                    <span className="text-xs text-gray-200 font-medium">{room.capacity}</span>
                   </div>
                   <div className="flex flex-col items-center gap-1 py-1">
-                    <Bed className="w-4 h-4 text-[#C5A059]" />
-                    <span className="text-[11px] text-gray-300 font-medium leading-tight">King Bed</span>
+                    <Bed className="w-4 h-4 text-[#ECC46C]" />
+                    <span className="text-xs text-gray-200 font-medium">King Bed</span>
                   </div>
                 </div>
 
                 {/* Features */}
-                <div className="space-y-2 mb-5 flex-grow">
-                  {room.features.slice(0, 4).map((feature, idx) => (
-                    <div key={idx} className="flex items-start gap-2">
-                      <CheckCircle className="w-3.5 h-3.5 text-[#C5A059] shrink-0 mt-0.5" />
-                      <span className="text-[12px] text-gray-300 leading-snug">{feature}</span>
+                <div className="space-y-2.5 mb-6 flex-grow">
+                  {room.features.slice(0, 5).map((feature, idx) => (
+                    <div key={idx} className="flex items-start gap-2.5">
+                      <CheckCircle className="w-4 h-4 text-[#ECC46C] shrink-0 mt-0.5" />
+                      <span className="text-xs sm:text-sm text-gray-300 leading-snug">{feature}</span>
                     </div>
                   ))}
                 </div>
 
-                {/* Buttons — 48px min-height for touch */}
-                <div className="grid grid-cols-2 gap-2.5 mt-auto">
+                {/* Action Buttons */}
+                <div className="grid grid-cols-2 gap-3 mt-auto">
                   <button
                     onClick={() => openModal(room)}
-                    className="min-h-[48px] border border-[#C5A059] text-white hover:bg-[#C5A059] hover:text-[#0A0D12]
-                               text-xs uppercase font-bold rounded transition-all active:scale-[0.97]"
+                    className="min-h-[48px] border border-[#ECC46C] text-white hover:bg-[#ECC46C] hover:text-[#0A0F29]
+                               text-xs uppercase font-bold tracking-wider rounded-lg transition-all active:scale-[0.97]"
                   >
-                    View Details
+                    View Photos
                   </button>
                   <button
                     onClick={() => onBookRoom(room)}
-                    className="min-h-[48px] bg-gradient-to-r from-[#C5A059] to-[#E5C483] hover:from-[#E5C483] hover:to-[#C5A059]
-                               text-[#0A0D12] text-xs uppercase font-bold rounded transition-all active:scale-[0.97]"
+                    className="min-h-[48px] bg-gradient-to-r from-[#D7AD50] to-[#ECC46C] hover:from-[#ECC46C] hover:to-[#D7AD50]
+                               text-[#0A0F29] text-xs uppercase font-bold tracking-wider rounded-lg transition-all active:scale-[0.97] shadow-xl"
                   >
                     Book Now
                   </button>
@@ -110,52 +158,92 @@ export default function Rooms({ onBookRoom }) {
         </div>
       </div>
 
-      {/* ── Room Detail Modal ── */}
+      {/* Swipeable Room Detail & Gallery Modal */}
       {selectedRoom && (
         <div
-          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-end sm:items-center justify-center"
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-4"
           onClick={closeModal}
         >
-          {/*
-            On mobile: sheet slides up from bottom (items-end).
-            On sm+: centered dialog.
-          */}
           <div
-            className="glass-effect w-full sm:max-w-2xl sm:mx-4 max-h-[92dvh] overflow-y-auto
+            className="glass-effect w-full sm:max-w-2xl max-h-[92dvh] overflow-y-auto
                         rounded-t-2xl sm:rounded-2xl p-5 sm:p-8 relative animate-scaleUp
-                        pb-[calc(1.25rem+env(safe-area-inset-bottom))]"
+                        border border-[#ECC46C]/30 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Drag handle (mobile visual cue) */}
-            <div className="sm:hidden w-10 h-1 bg-gray-600 rounded-full mx-auto mb-4" />
+            {/* Close button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 p-2 bg-[#0A0F29]/80 text-gray-300 hover:text-white rounded-full border border-[#ECC46C]/30 z-30"
+              aria-label="Close room details"
+            >
+              <X className="w-5 h-5" />
+            </button>
 
-            {/* Header row */}
-            <div className="flex items-start justify-between mb-4">
-              <div>
-                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white">{selectedRoom.name}</h3>
-                <p className="text-[#C5A059] text-sm">{selectedRoom.subtitle}</p>
-              </div>
-              <button onClick={closeModal} className="min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-400 hover:text-white rounded-lg">
-                <X className="w-6 h-6" />
-              </button>
+            {/* Header */}
+            <div className="mb-4 pr-10">
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white">{selectedRoom.name}</h3>
+              <p className="text-[#ECC46C] text-xs font-semibold uppercase tracking-wider mt-0.5">{selectedRoom.subtitle}</p>
             </div>
 
-            <img
-              src={selectedRoom.image}
-              alt={selectedRoom.name}
-              className="w-full h-52 sm:h-72 object-cover rounded-xl mb-5"
-            />
+            {/* Swipeable Photo Gallery Container */}
+            <div
+              className="relative h-60 sm:h-80 rounded-xl overflow-hidden mb-4 border border-[#ECC46C]/30 shadow-2xl group touch-pan-y"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              <img
+                src={selectedRoom.gallery[activeImageIdx]}
+                alt={`${selectedRoom.name} photo ${activeImageIdx + 1}`}
+                className="w-full h-full object-cover transition-all duration-300"
+              />
 
-            <h4 className="font-serif text-lg sm:text-xl text-[#C5A059] mb-1.5">Room Overview</h4>
-            <p className="text-gray-300 text-sm leading-relaxed mb-5">
+              {/* Prev / Next Arrow Overlay */}
+              {selectedRoom.gallery.length > 1 && (
+                <>
+                  <button
+                    onClick={prevImage}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 bg-[#0A0F29]/80 text-[#ECC46C] border border-[#ECC46C]/40 rounded-full hover:bg-[#ECC46C] hover:text-[#0A0F29] transition-all shadow-xl"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={nextImage}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 bg-[#0A0F29]/80 text-[#ECC46C] border border-[#ECC46C]/40 rounded-full hover:bg-[#ECC46C] hover:text-[#0A0F29] transition-all shadow-xl"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+
+                  {/* Thumbnail Dots */}
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-[#0A0F29]/70 backdrop-blur-md py-1 px-2.5 rounded-full border border-white/10">
+                    {selectedRoom.gallery.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setActiveImageIdx(i)}
+                        className={`h-2 rounded-full transition-all ${
+                          activeImageIdx === i ? 'w-5 bg-[#ECC46C]' : 'w-2 bg-white/40'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+
+            <p className="text-center text-[11px] text-gray-400 mb-5">
+              ↔ Swipe left/right to view room &amp; bathroom photos
+            </p>
+
+            <h4 className="font-serif text-lg text-[#ECC46C] mb-2 font-bold">Room Overview</h4>
+            <p className="text-gray-300 text-xs sm:text-sm leading-relaxed mb-6">
               {selectedRoom.description}
             </p>
 
-            <h4 className="font-serif text-lg sm:text-xl text-[#C5A059] mb-3">Included Amenities</h4>
+            <h4 className="font-serif text-lg text-[#ECC46C] mb-3 font-bold">Luxury Amenities Included</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-7">
               {selectedRoom.features.map((feature, idx) => (
                 <div key={idx} className="flex items-start gap-2">
-                  <ShieldCheck className="w-4 h-4 text-[#C5A059] shrink-0 mt-0.5" />
+                  <ShieldCheck className="w-4 h-4 text-[#ECC46C] shrink-0 mt-0.5" />
                   <span className="text-xs text-gray-200 leading-snug">{feature}</span>
                 </div>
               ))}
@@ -164,13 +252,13 @@ export default function Rooms({ onBookRoom }) {
             <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={closeModal}
-                className="min-h-[48px] border border-[#C5A059] text-white hover:bg-[#C5A059] hover:text-[#0A0D12] text-xs font-bold uppercase rounded"
+                className="min-h-[48px] border border-[#ECC46C]/40 text-white hover:bg-white/10 text-xs font-bold uppercase rounded-lg"
               >
                 Close
               </button>
               <button
                 onClick={() => { closeModal(); onBookRoom(selectedRoom); }}
-                className="min-h-[48px] bg-gradient-to-r from-[#C5A059] to-[#E5C483] text-[#0A0D12] text-xs font-bold uppercase rounded"
+                className="min-h-[48px] bg-gradient-to-r from-[#D7AD50] to-[#ECC46C] text-[#0A0F29] text-xs font-bold uppercase rounded-lg shadow-xl"
               >
                 Book This Room
               </button>
