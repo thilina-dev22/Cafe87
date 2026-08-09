@@ -10,7 +10,7 @@ export const siteConfig = {
   facebook: "https://www.facebook.com/87ahangama",
   instagram: "https://www.instagram.com/87ahangama/",
   logo: "/assets/images/87-logo-official.png",
-  heroBg: "/assets/images/pexels-freestockpro-11629009-scaled.jpg",
+  heroBg: "/assets/images/real/property-exterior.jpg",
   web3formsAccessKey: "" // Add Web3Forms Access Key here or via VITE_WEB3FORMS_ACCESS_KEY env variable
 };
 
@@ -19,94 +19,67 @@ export const roomsData = [
     id: "sun-room",
     name: "Sun Room",
     subtitle: "Bright & Sunny Private Suite",
-    description: "Sun room is a bright and comfortable private room designed for a relaxing stay. Spanning 148 sq ft with abundant natural sunlight, it is ideal for up to 2 guests seeking warmth and serenity.",
+    description: "Sun Room is a bright, air-conditioned private suite featuring a solid wood checkered headboard, plush king bed with swan towel art, ceiling fan, and a unique artisanal earthen en-suite bathroom.",
     price: "$85",
     pricePeriod: "per night",
     size: "148 sq ft",
     capacity: "2 Guests",
     bed: "1 Extra-Large King Bed",
     view: "Tropical Garden View",
-    image: "/assets/images/WhatsApp-Image-2025-12-24-at-10.52.39-AM-1.jpeg",
+    image: "/assets/images/real/sun-room.jpg",
     gallery: [
-      "/assets/images/WhatsApp-Image-2025-12-24-at-10.52.39-AM-1.jpeg",
-      "/assets/images/WhatsApp-Image-2025-12-23-at-10.15.06-PM.jpeg",
-      "/assets/images/WhatsApp-Image-2025-12-23-at-10.15.07-PM.jpeg"
+      "/assets/images/real/sun-room.jpg",
+      "/assets/images/real/bathroom-1.jpg",
+      "/assets/images/real/bathroom-2.jpg"
     ],
     features: [
       "Private room with abundant natural sunlight",
-      "King-size bed with comfortable premium bedding",
-      "Air conditioning for year-round comfort",
-      "Free high-speed Wi-Fi & Smart TV",
-      "Smart TV with Netflix & YouTube access",
-      "Private en-suite bathroom with shower",
-      "Fresh towels, slippers & essential toiletries",
-      "Electric kettle & complimentary tea/coffee"
+      "Solid wood checkered headboard & King bed",
+      "Air conditioning & silent ceiling fan",
+      "Artisanal earthen en-suite bathroom",
+      "Sunburst vanity mirror & vessel sink",
+      "Free high-speed Wi-Fi",
+      "Fresh towels, bamboo rack & hairdryer",
+      "Electric kettle & tea/coffee station"
     ]
   },
   {
     id: "moon-room",
     name: "Moon Room",
-    subtitle: "Serene & Air-Conditioned Haven",
-    description: "This air-conditioned double room comprises a flat-screen TV with cable channels, private entrance, minibar, and a luxurious private bathroom. Designed for peaceful nights and quiet luxury.",
+    subtitle: "Four-Poster Canopy Suite",
+    description: "Moon Room is a romantic air-conditioned haven featuring a solid four-poster teak canopy bed with elegant white mosquito net drapery, dark blue linen, mini-bar coffee station, and a luxury earthen bathroom.",
     price: "$95",
     pricePeriod: "per night",
     size: "165 sq ft",
     capacity: "2 Guests",
-    bed: "1 King-Size Double Bed",
-    view: "Pool & Terrace View",
-    image: "/assets/images/img-75.jpg",
+    bed: "1 Four-Poster Teak King Bed",
+    view: "Garden & Patio View",
+    image: "/assets/images/real/moon-room.jpg",
     gallery: [
-      "/assets/images/img-75.jpg",
-      "/assets/images/WhatsApp-Image-2025-12-24-at-10.52.40-AM.jpeg",
-      "/assets/images/WhatsApp-Image-2025-12-23-at-10.15.08-PM.jpeg"
+      "/assets/images/real/moon-room.jpg",
+      "/assets/images/real/bathroom-1.jpg",
+      "/assets/images/real/bathroom-2.jpg"
     ],
     features: [
-      "Private ground floor entrance with quiet patio",
-      "Air conditioning & Minibar",
-      "Flat-screen TV with cable & free Netflix",
-      "Private en-suite bathroom with bath or shower",
-      "Hairdryer, slippers & free luxury toiletries",
-      "Ironing facilities & clothes rack",
+      "Four-poster teak canopy bed with drapery",
+      "Air conditioning for cool comfort",
+      "Artisanal earthen en-suite bathroom",
+      "Minibar & tea/coffee making facilities",
+      "Polished concrete flooring & tropical decor",
+      "Hairdryer, slippers & luxury toiletries",
       "High-speed Wi-Fi connection",
-      "Socket right near the bed"
-    ]
-  },
-  {
-    id: "beachfront-suite",
-    name: "Premier Beachfront Suite",
-    subtitle: "Panoramas of the Indian Ocean",
-    description: "An expansive beachfront suite featuring floor-to-ceiling glass windows, a private sun terrace, ocean views, and premium artisanal room services.",
-    price: "$140",
-    pricePeriod: "per night",
-    size: "240 sq ft",
-    capacity: "2 - 3 Guests",
-    bed: "1 Super King Bed + Daybed",
-    view: "Direct Ocean Front View",
-    image: "/assets/images/WhatsApp-Image-2025-12-24-at-10.52.42-AM.jpeg",
-    gallery: [
-      "/assets/images/WhatsApp-Image-2025-12-24-at-10.52.42-AM.jpeg",
-      "/assets/images/WhatsApp-Image-2025-12-24-at-10.52.43-AM.jpeg"
-    ],
-    features: [
-      "Direct beach & ocean panorama",
-      "Private balcony with daybed lounging",
-      "Super King bed with 400-thread count sheets",
-      "Rainfall shower & freestanding soaking tub",
-      "Daily gourmet breakfast included",
-      "Espresso machine & stocked mini-bar"
+      "Sockets conveniently located near bed"
     ]
   }
 ];
 
 export const galleryData = [
-  { id: 1, title: "87 Ahangama Coastal Vibe", category: "Resort", url: "/assets/images/pexels-freestockpro-11629009-scaled.jpg" },
-  { id: 2, title: "Sun Room Interior", category: "Rooms", url: "/assets/images/WhatsApp-Image-2025-12-24-at-10.52.39-AM-1.jpeg" },
-  { id: 3, title: "Moon Room Luxury Setup", category: "Rooms", url: "/assets/images/img-75.jpg" },
-  { id: 4, title: "Artisanal Coffee & Breakfast", category: "Cafe", url: "/assets/images/WhatsApp-Image-2025-09-07-at-4.25.22-PM.jpeg" },
-  { id: 5, title: "Resort Exterior & Gardens", category: "Resort", url: "/assets/images/WhatsApp-Image-2025-12-24-at-10.52.40-AM.jpeg" },
-  { id: 6, title: "Ahangama Beach & Surf", category: "Vibe", url: "/assets/images/pexels-malindabandaralk-16508231-scaled.jpg" },
-  { id: 7, title: "Boutique Room Details", category: "Rooms", url: "/assets/images/WhatsApp-Image-2025-12-23-at-10.15.06-PM.jpeg" },
-  { id: 8, title: "Relaxation Lounge", category: "Resort", url: "/assets/images/WhatsApp-Image-2025-12-24-at-10.52.42-AM.jpeg" }
+  { id: 1, title: "87 Ahangama Front Entrance", category: "Resort", url: "/assets/images/real/property-exterior.jpg" },
+  { id: 2, title: "Sun Room Deluxe Suite", category: "Rooms", url: "/assets/images/real/sun-room.jpg" },
+  { id: 3, title: "Moon Room Four-Poster Canopy Bed", category: "Rooms", url: "/assets/images/real/moon-room.jpg" },
+  { id: 4, title: "Artisanal Earthen Bathroom & Sunburst Mirror", category: "Bathrooms", url: "/assets/images/real/bathroom-1.jpg" },
+  { id: 5, title: "Luxury Bath Vanity & Bamboo Ladder", category: "Bathrooms", url: "/assets/images/real/bathroom-2.jpg" },
+  { id: 6, title: "Artisanal Cafe & Dining", category: "Cafe", url: "/assets/images/WhatsApp-Image-2025-09-07-at-4.25.22-PM.jpeg" }
 ];
 
 export const cafeMenuItems = [
