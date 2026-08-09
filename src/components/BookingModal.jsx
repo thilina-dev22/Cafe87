@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { roomsData } from '../data/siteData';
 import { CheckCircle, X } from 'lucide-react';
 
+import { siteConfig } from '../data/siteData';
+
 export default function BookingModal({ isOpen, onClose, selectedRoom }) {
   const [room, setRoom] = useState(selectedRoom ? selectedRoom.id : roomsData[0].id);
   const [checkIn, setCheckIn] = useState('');
@@ -9,6 +11,7 @@ export default function BookingModal({ isOpen, onClose, selectedRoom }) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // Body lock
   React.useEffect(() => {
@@ -24,9 +27,37 @@ export default function BookingModal({ isOpen, onClose, selectedRoom }) {
 
   if (!isOpen) return null;
 
-  const handleBooking = (e) => {
+  const handleBooking = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+
+    const apiKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || siteConfig.web3formsAccessKey;
+    const selectedRoomObj = roomsData.find((r) => r.id === room);
+
+    try {
+      if (apiKey) {
+        await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            access_key: apiKey,
+            subject: `New Room Booking Request: ${selectedRoomObj ? selectedRoomObj.name : room}`,
+            from_name: name,
+            guest_name: name,
+            phone_or_whatsapp: phone,
+            room: selectedRoomObj ? selectedRoomObj.name : room,
+            check_in: checkIn,
+            check_out: checkOut,
+          }),
+        });
+      }
+      setSubmitted(true);
+    } catch (err) {
+      console.error(err);
+      setSubmitted(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

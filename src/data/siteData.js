@@ -7,7 +7,8 @@ export const siteConfig = {
   address: "X98G+9VQ, Ahangama 80650, Sri Lanka",
   whatsapp: "+94742087870",
   logo: "/assets/images/cropped-cropped-87-logo-Final-web.png",
-  heroBg: "/assets/images/pexels-freestockpro-11629009-scaled.jpg"
+  heroBg: "/assets/images/pexels-freestockpro-11629009-scaled.jpg",
+  web3formsAccessKey: "" // Add Web3Forms Access Key here or via VITE_WEB3FORMS_ACCESS_KEY env variable
 };
 
 export const roomsData = [
