@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gold-500: #C5A059;
-  --color-gold-400: #E5C483;
-  --color-gold-600: #B28E46;
-  --color-obsidian: #0A0D12;
-  --color-surface-dark: #141923;
-  --color-card-dark: #1C2331;
-  --color-navy: #0F194C;
+  --color-gold-500: #ECC46C;
+  --color-gold-400: #F3D893;
+  --color-gold-600: #D7AD50;
+  --color-navy-900: #0A0F29;
+  --color-navy-800: #0D1638;
+  --color-navy-700: #0F184B;
+  --color-navy-600: #14205E;
 
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Outfit', -apple-system, sans-serif;
@@ -18,7 +18,7 @@
   html {
     scroll-behavior: smooth;
     font-family: 'Outfit', -apple-system, sans-serif;
-    background-color: #0A0D12;
+    background-color: #0A0F29;
     color: #F3F4F6;
     /* Prevent horizontal overflow on mobile */
     overflow-x: hidden;
@@ -60,10 +60,10 @@
    GLASSMORPHISM UTILITIES
    ========================================== */
 .glass-effect {
-  background: rgba(20, 25, 35, 0.82);
+  background: rgba(13, 22, 56, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(197, 160, 89, 0.22);
+  border: 1px solid rgba(236, 196, 108, 0.28);
 }
 
 .glass-effect-hover {
@@ -71,8 +71,8 @@
 }
 
 .glass-effect-hover:hover {
-  border-color: rgba(197, 160, 89, 0.55);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  border-color: rgba(236, 196, 108, 0.6);
+  box-shadow: 0 12px 30px rgba(10, 15, 41, 0.6);
 }
 
 /* ==========================================

@@ -30,7 +30,7 @@ export default function Hero({ onBookClick }) {
         </h1>
 
         {/* Tagline */}
-        <p className="text-sm sm:text-lg md:text-xl text-[#E5C483] max-w-xl mx-auto mb-8 sm:mb-10 font-light tracking-wide px-2">
+        <p className="text-sm sm:text-lg md:text-xl text-[#F3D893] max-w-xl mx-auto mb-8 sm:mb-10 font-light tracking-wide px-2">
           {siteConfig.subtagline}
         </p>
 
@@ -38,9 +38,9 @@ export default function Hero({ onBookClick }) {
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-10 sm:mb-14 px-2 sm:px-0">
           <button
             onClick={onBookClick}
-            className="min-h-[52px] sm:min-h-0 bg-gradient-to-r from-[#C5A059] to-[#E5C483] hover:from-[#E5C483] hover:to-[#C5A059]
-                       text-[#0A0D12] font-bold text-sm uppercase tracking-widest
-                       px-8 py-4 rounded-lg shadow-xl transition-all active:scale-[0.98]"
+            className="min-h-[52px] sm:min-h-0 bg-gradient-to-r from-[#D7AD50] to-[#ECC46C] hover:from-[#ECC46C] hover:to-[#D7AD50]
+                       text-[#0A0F29] font-bold text-sm uppercase tracking-widest
+                       px-8 py-4 rounded-lg shadow-2xl transition-all active:scale-[0.98]"
           >
             Book Your Stay
           </button>
@@ -48,7 +48,7 @@ export default function Hero({ onBookClick }) {
           <a
             href="#rooms"
             className="min-h-[52px] sm:min-h-0 flex items-center justify-center
-                       border-2 border-[#C5A059] text-white hover:bg-[#C5A059] hover:text-[#0A0D12]
+                       border-2 border-[#ECC46C] text-white hover:bg-[#ECC46C] hover:text-[#0A0F29]
                        font-bold text-sm uppercase tracking-widest px-8 py-4 rounded-lg
                        transition-all active:scale-[0.98]"
           >

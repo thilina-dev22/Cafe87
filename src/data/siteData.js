@@ -9,7 +9,7 @@ export const siteConfig = {
   whatsapp: "94742087870",
   facebook: "https://www.facebook.com/87ahangama",
   instagram: "https://www.instagram.com/87ahangama/",
-  logo: "/assets/images/cropped-cropped-87-logo-Final-web.png",
+  logo: "/assets/images/87-logo-official.png",
   heroBg: "/assets/images/pexels-freestockpro-11629009-scaled.jpg",
   web3formsAccessKey: "" // Add Web3Forms Access Key here or via VITE_WEB3FORMS_ACCESS_KEY env variable
 };

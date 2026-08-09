@@ -38,8 +38,8 @@ export default function Header({ onBookClick }) {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-[#0A0D12]/96 backdrop-blur-md border-b border-[#C5A059]/20 shadow-xl'
-            : 'bg-[#0A0D12]/60 backdrop-blur-sm'
+            ? 'bg-[#0A0F29]/96 backdrop-blur-md border-b border-[#ECC46C]/25 shadow-2xl'
+            : 'bg-[#0A0F29]/70 backdrop-blur-sm'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,15 +49,15 @@ export default function Header({ onBookClick }) {
             <a href="#hero" className="flex items-center gap-2.5 sm:gap-3 group min-w-0" onClick={handleNavClick}>
               <img
                 src={siteConfig.logo}
-                alt="87 Ahangama logo"
-                className="h-9 sm:h-11 w-auto object-contain shrink-0 transition-transform group-hover:scale-105"
+                alt="87 Ahangama emblem logo"
+                className="h-11 sm:h-14 w-auto object-contain shrink-0 transition-transform group-hover:scale-105"
                 onError={(e) => { e.target.style.display = 'none'; }}
               />
               <div className="flex flex-col min-w-0">
                 <span className="font-serif text-base sm:text-xl font-bold text-white tracking-widest leading-none truncate">
                   87 AHANGAMA
                 </span>
-                <span className="text-[9px] sm:text-[10px] tracking-[0.18em] text-[#C5A059] uppercase font-sans mt-0.5 truncate">
+                <span className="text-[9px] sm:text-[10px] tracking-[0.18em] text-[#ECC46C] uppercase font-sans mt-1 truncate">
                   Residence &amp; Cafe
                 </span>
               </div>

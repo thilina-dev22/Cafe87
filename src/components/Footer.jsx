@@ -4,20 +4,25 @@ import { MapPin, Phone, Mail, Globe, Heart } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#05070A] border-t border-[#C5A059]/20 pt-16 pb-8">
+    <footer className="bg-[#060B24] border-t border-[#ECC46C]/25 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-12">
           
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <img src={siteConfig.logo} alt="87 Ahangama" className="h-10 w-auto" />
-              <span className="font-serif text-xl font-bold text-white tracking-wider">
-                87 AHANGAMA
-              </span>
+            <div className="flex items-center gap-3.5 mb-4">
+              <img src={siteConfig.logo} alt="87 Ahangama official emblem" className="h-16 w-auto object-contain drop-shadow-xl" />
+              <div>
+                <span className="font-serif text-xl font-bold text-white tracking-wider block leading-tight">
+                  87 AHANGAMA
+                </span>
+                <span className="text-[10px] tracking-[0.16em] text-[#ECC46C] uppercase font-sans font-semibold">
+                  Residence &amp; Cafe
+                </span>
+              </div>
             </div>
             <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
-              A luxury boutique coastal residence & artisanal cafe in Ahangama, Sri Lanka. Offering sun-filled rooms, ocean views, and warm island hospitality.
+              A luxury boutique coastal residence &amp; artisanal cafe in Ahangama, Sri Lanka. Offering sun-filled rooms, ocean views, and warm island hospitality.
             </p>
             <div className="flex items-center gap-3">
               <a
