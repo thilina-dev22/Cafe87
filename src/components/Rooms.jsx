@@ -136,21 +136,44 @@ export default function Rooms({ onBookRoom }) {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="grid grid-cols-2 gap-3 mt-auto">
-                  <button
-                    onClick={() => openModal(room)}
-                    className="min-h-[48px] border border-[#ECC46C] text-white hover:bg-[#ECC46C] hover:text-[#0A0F29]
-                               text-xs uppercase font-bold tracking-wider rounded-lg transition-all active:scale-[0.97]"
-                  >
-                    View Photos
-                  </button>
-                  <button
-                    onClick={() => onBookRoom(room)}
-                    className="min-h-[48px] bg-gradient-to-r from-[#D7AD50] to-[#ECC46C] hover:from-[#ECC46C] hover:to-[#D7AD50]
-                               text-[#0A0F29] text-xs uppercase font-bold tracking-wider rounded-lg transition-all active:scale-[0.97] shadow-xl"
-                  >
-                    Book Now
-                  </button>
+                <div className="space-y-2 mt-auto">
+                  <div className="grid grid-cols-2 gap-2.5">
+                    <button
+                      onClick={() => openModal(room)}
+                      className="min-h-[44px] border border-[#ECC46C] text-white hover:bg-[#ECC46C] hover:text-[#0A0F29]
+                                 text-xs uppercase font-bold tracking-wider rounded-lg transition-all active:scale-[0.97]"
+                    >
+                      View Photos
+                    </button>
+                    <button
+                      onClick={() => onBookRoom(room)}
+                      className="min-h-[44px] bg-gradient-to-r from-[#D7AD50] to-[#ECC46C] hover:from-[#ECC46C] hover:to-[#D7AD50]
+                                 text-[#0A0F29] text-xs uppercase font-bold tracking-wider rounded-lg transition-all active:scale-[0.97] shadow-xl"
+                    >
+                      Book Direct
+                    </button>
+                  </div>
+                  {/* OTA Quick Links */}
+                  <div className="grid grid-cols-2 gap-2 pt-1">
+                    <a
+                      href={room.bookingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-1 py-2 px-2.5 bg-[#003580] hover:bg-[#002B66] text-white text-[11px] font-bold rounded-md transition-all border border-blue-400/30"
+                    >
+                      <span className="font-serif italic font-extrabold text-xs">b.</span>
+                      <span>Booking.com</span>
+                    </a>
+                    <a
+                      href={room.agodaUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-1 py-2 px-2.5 bg-[#00A859]/20 hover:bg-[#00A859]/30 text-white border border-[#00A859]/50 text-[11px] font-bold rounded-md transition-all"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#00A859]"></span>
+                      <span>Agoda</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -249,19 +272,33 @@ export default function Rooms({ onBookRoom }) {
               ))}
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
-              <button
-                onClick={closeModal}
-                className="min-h-[48px] border border-[#ECC46C]/40 text-white hover:bg-white/10 text-xs font-bold uppercase rounded-lg"
-              >
-                Close
-              </button>
+            <div className="space-y-3">
               <button
                 onClick={() => { closeModal(); onBookRoom(selectedRoom); }}
-                className="min-h-[48px] bg-gradient-to-r from-[#D7AD50] to-[#ECC46C] text-[#0A0F29] text-xs font-bold uppercase rounded-lg shadow-xl"
+                className="w-full min-h-[48px] bg-gradient-to-r from-[#D7AD50] to-[#ECC46C] text-[#0A0F29] text-xs font-bold uppercase tracking-wider rounded-lg shadow-xl"
               >
-                Book This Room
+                Book Direct With Us
               </button>
+              <div className="grid grid-cols-2 gap-2.5">
+                <a
+                  href={selectedRoom.bookingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-1.5 min-h-[44px] bg-[#003580] hover:bg-[#002B66] text-white text-xs font-bold rounded-lg transition-all border border-blue-400/30"
+                >
+                  <span className="font-serif italic font-extrabold text-sm">b.</span>
+                  <span>Booking.com</span>
+                </a>
+                <a
+                  href={selectedRoom.agodaUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-1.5 min-h-[44px] bg-[#00A859]/20 hover:bg-[#00A859]/30 text-white border border-[#00A859]/50 text-xs font-bold rounded-lg transition-all"
+                >
+                  <span className="w-2 h-2 rounded-full bg-[#00A859]"></span>
+                  <span>Agoda</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -179,8 +179,8 @@ export default function BookingModal({ isOpen, onClose, selectedRoom }) {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full min-h-[52px] mt-2 bg-gradient-to-r from-[#C5A059] to-[#E5C483] hover:from-[#E5C483] hover:to-[#C5A059]
-                           text-[#0A0D12] font-bold text-sm uppercase tracking-widest rounded shadow-lg transition-all active:scale-[0.98]
+                className="w-full min-h-[52px] mt-2 bg-gradient-to-r from-[#D7AD50] to-[#ECC46C] hover:from-[#ECC46C] hover:to-[#D7AD50]
+                           text-[#0A0F29] font-bold text-sm uppercase tracking-widest rounded-lg shadow-xl transition-all active:scale-[0.98]
                            flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 {loading ? (
@@ -189,10 +189,41 @@ export default function BookingModal({ isOpen, onClose, selectedRoom }) {
                     <span>Processing Reservation...</span>
                   </>
                 ) : (
-                  <span>Confirm Reservation Request</span>
+                  <span>Confirm Direct Reservation</span>
                 )}
               </button>
             </form>
+
+            {/* OTA Partner Booking Links */}
+            <div className="mt-8 pt-6 border-t border-[#ECC46C]/20 text-center">
+              <p className="text-xs font-bold text-gray-300 uppercase tracking-widest mb-3">
+                Or Book Via Our Partner Platforms
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                <a
+                  href={siteConfig.otaLinks.booking}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-1.5 px-3 py-2.5 bg-[#003580] hover:bg-[#002B66] text-white font-bold text-xs rounded-lg shadow-md transition-all border border-blue-400/30"
+                >
+                  <span className="font-serif text-sm italic font-extrabold">b.</span>
+                  <span>Booking.com</span>
+                </a>
+                <a
+                  href={siteConfig.otaLinks.agoda}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-1.5 px-3 py-2.5 bg-[#00A859]/20 hover:bg-[#00A859]/30 text-white border border-[#00A859]/50 font-bold text-xs rounded-lg shadow-md transition-all"
+                >
+                  <span className="w-2 h-2 rounded-full bg-[#00A859] inline-block animate-pulse"></span>
+                  <span>Agoda</span>
+                </a>
+                <div className="flex items-center justify-center gap-1.5 px-3 py-2.5 bg-[#FF5A5F]/15 text-gray-400 border border-[#FF5A5F]/30 font-semibold text-xs rounded-lg cursor-not-allowed col-span-2 sm:col-span-1">
+                  <span className="text-[#FF5A5F]">airbnb</span>
+                  <span className="text-[9px] bg-white/10 text-gray-300 px-1.5 py-0.5 rounded">Soon</span>
+                </div>
+              </div>
+            </div>
           </>
         ) : (
           <div className="text-center py-8">

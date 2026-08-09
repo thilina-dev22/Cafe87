@@ -9,6 +9,11 @@ export const siteConfig = {
   whatsapp: "94742087870",
   facebook: "https://www.facebook.com/87ahangama",
   instagram: "https://www.instagram.com/87ahangama/",
+  otaLinks: {
+    booking: "https://www.booking.com/Share-I6rKZfl",
+    agoda: "https://www.agoda.com/87-ahangama/hotel/galle-lk.html",
+    airbnb: "" // Add Airbnb link here when available
+  },
   logo: "/assets/images/87-logo-official.png",
   heroBg: "/assets/images/real/property-exterior.jpg",
   web3formsAccessKey: "" // Add Web3Forms Access Key here or via VITE_WEB3FORMS_ACCESS_KEY env variable
@@ -19,13 +24,15 @@ export const roomsData = [
     id: "sun-room",
     name: "Sun Room",
     subtitle: "Bright & Sunny Private Suite",
-    description: "Sun Room is a bright, air-conditioned private suite featuring a solid wood checkered headboard, plush king bed with swan towel art, ceiling fan, and a unique artisanal earthen en-suite bathroom.",
-    price: "$85",
+    description: "Sun Room is a bright, air-conditioned private suite featuring a solid wood checkered headboard, 1 extra-large double bed with swan towel art, ceiling fan, and a unique artisanal earthen en-suite bathroom.",
+    price: "From $29",
     pricePeriod: "per night",
     size: "148 sq ft",
     capacity: "2 Guests",
-    bed: "1 Extra-Large King Bed",
+    bed: "1 Extra-Large Double Bed",
     view: "Tropical Garden View",
+    bookingUrl: "https://www.booking.com/Share-I6rKZfl",
+    agodaUrl: "https://www.agoda.com/87-ahangama/hotel/galle-lk.html",
     image: "/assets/images/real/sun-room.jpg",
     gallery: [
       "/assets/images/real/sun-room.jpg",
@@ -33,14 +40,19 @@ export const roomsData = [
       "/assets/images/real/bathroom-2.jpg"
     ],
     features: [
-      "Private room with abundant natural sunlight",
-      "Solid wood checkered headboard & King bed",
+      "1 Extra-large double bed with swan towel art",
       "Air conditioning & silent ceiling fan",
-      "Artisanal earthen en-suite bathroom",
-      "Sunburst vanity mirror & vessel sink",
+      "Artisanal earthen en-suite bathroom with bath/shower",
+      "Flat-screen TV with cable channels",
+      "Minibar & Refrigerator",
       "Free high-speed Wi-Fi",
-      "Fresh towels, bamboo rack & hairdryer",
-      "Electric kettle & tea/coffee station"
+      "Free toiletries, towels, linen & slippers",
+      "Electrical socket right near the bed",
+      "Hairdryer, clothes rack & ironing facilities",
+      "Mosquito net for peaceful sleep",
+      "Electric kettle & coffee/tea maker",
+      "Ground floor location with private entrance",
+      "Optional fresh breakfast included"
     ]
   },
   {
@@ -48,12 +60,14 @@ export const roomsData = [
     name: "Moon Room",
     subtitle: "Four-Poster Canopy Suite",
     description: "Moon Room is a romantic air-conditioned haven featuring a solid four-poster teak canopy bed with elegant white mosquito net drapery, dark blue linen, mini-bar coffee station, and a luxury earthen bathroom.",
-    price: "$95",
+    price: "From $29",
     pricePeriod: "per night",
     size: "165 sq ft",
     capacity: "2 Guests",
-    bed: "1 Four-Poster Teak King Bed",
+    bed: "1 Four-Poster Teak Double Bed",
     view: "Garden & Patio View",
+    bookingUrl: "https://www.booking.com/Share-I6rKZfl",
+    agodaUrl: "https://www.agoda.com/87-ahangama/hotel/galle-lk.html",
     image: "/assets/images/real/moon-room.jpg",
     gallery: [
       "/assets/images/real/moon-room.jpg",
@@ -61,14 +75,19 @@ export const roomsData = [
       "/assets/images/real/bathroom-2.jpg"
     ],
     features: [
-      "Four-poster teak canopy bed with drapery",
-      "Air conditioning for cool comfort",
-      "Artisanal earthen en-suite bathroom",
-      "Minibar & tea/coffee making facilities",
+      "1 Four-poster teak double bed with net drapery",
+      "Air conditioning & silent ceiling fan",
+      "Artisanal earthen en-suite bathroom with bath/shower",
+      "Flat-screen TV with cable channels",
+      "Minibar & Refrigerator",
+      "Free high-speed Wi-Fi connection",
+      "Free luxury toiletries, towels, linen & slippers",
+      "Electrical socket right near the bed",
+      "Hairdryer, clothes rack & ironing facilities",
+      "Electric kettle & tea/coffee making facilities",
       "Polished concrete flooring & tropical decor",
-      "Hairdryer, slippers & luxury toiletries",
-      "High-speed Wi-Fi connection",
-      "Sockets conveniently located near bed"
+      "Ground floor location with private entrance",
+      "Optional fresh breakfast included"
     ]
   }
 ];
