@@ -5,7 +5,10 @@ export const siteConfig = {
   phone: "+94 74 208 7870",
   email: "info@87ahangama.com",
   address: "X98G+9VQ, Ahangama 80650, Sri Lanka",
-  whatsapp: "+94742087870",
+  googleMapsUrl: "https://maps.app.goo.gl/JCFjTQmnwqfHdufQ7",
+  whatsapp: "94742087870",
+  facebook: "https://www.facebook.com/87ahangama",
+  instagram: "https://www.instagram.com/87ahangama/",
   logo: "/assets/images/cropped-cropped-87-logo-Final-web.png",
   heroBg: "/assets/images/pexels-freestockpro-11629009-scaled.jpg",
   web3formsAccessKey: "" // Add Web3Forms Access Key here or via VITE_WEB3FORMS_ACCESS_KEY env variable

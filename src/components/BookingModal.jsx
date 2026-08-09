@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { roomsData } from '../data/siteData';
-import { CheckCircle, X } from 'lucide-react';
-
-import { siteConfig } from '../data/siteData';
+import { roomsData, siteConfig } from '../data/siteData';
+import { CheckCircle, X, Loader2 } from 'lucide-react';
 
 export default function BookingModal({ isOpen, onClose, selectedRoom }) {
   const [room, setRoom] = useState(selectedRoom ? selectedRoom.id : roomsData[0].id);
@@ -72,6 +70,14 @@ export default function BookingModal({ isOpen, onClose, selectedRoom }) {
                     pb-[calc(1.25rem+env(safe-area-inset-bottom))]"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Loading Overlay */}
+        {loading && (
+          <div className="absolute inset-0 z-50 bg-[#0A0D12]/92 backdrop-blur-md rounded-t-2xl sm:rounded-2xl flex flex-col items-center justify-center p-6 animate-fadeIn">
+            <Loader2 className="w-12 h-12 text-[#C5A059] animate-spin mb-4" />
+            <h4 className="font-serif text-xl font-bold text-white mb-1">Sending Reservation Request...</h4>
+            <p className="text-gray-400 text-xs tracking-wider uppercase">Please wait a moment</p>
+          </div>
+        )}
         {/* Drag handle */}
         <div className="sm:hidden w-10 h-1 bg-gray-600 rounded-full mx-auto mb-4" />
 
@@ -172,10 +178,19 @@ export default function BookingModal({ isOpen, onClose, selectedRoom }) {
 
               <button
                 type="submit"
+                disabled={loading}
                 className="w-full min-h-[52px] mt-2 bg-gradient-to-r from-[#C5A059] to-[#E5C483] hover:from-[#E5C483] hover:to-[#C5A059]
-                           text-[#0A0D12] font-bold text-sm uppercase tracking-widest rounded shadow-lg transition-all active:scale-[0.98]"
+                           text-[#0A0D12] font-bold text-sm uppercase tracking-widest rounded shadow-lg transition-all active:scale-[0.98]
+                           flex items-center justify-center gap-2 disabled:opacity-50"
               >
-                Confirm Reservation Request
+                {loading ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <span>Processing Reservation...</span>
+                  </>
+                ) : (
+                  <span>Confirm Reservation Request</span>
+                )}
               </button>
             </form>
           </>
