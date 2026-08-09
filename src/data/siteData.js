@@ -82,21 +82,177 @@ export const galleryData = [
   { id: 6, title: "Artisanal Cafe & Dining", category: "Cafe", url: "/assets/images/WhatsApp-Image-2025-09-07-at-4.25.22-PM.jpeg" }
 ];
 
-export const cafeMenuItems = [
+export const cafeMenuFull = [
   {
-    category: "Coffee & Brews",
+    id: "all-day-brunch",
+    category: "All Day Brunch",
+    subtitle: "Tropical Brunch & Artisanal Plates",
     items: [
-      { name: "Espresso / Americano", price: "$3.50", desc: "Single origin roasted Sri Lankan espresso" },
-      { name: "Coconut Cold Brew", price: "$4.50", desc: "Steeped 18hrs served over fresh king coconut water" },
-      { name: "Flat White / Cappuccino", price: "$4.00", desc: "Creamy steamed oat, almond or fresh milk" }
+      { name: "Sri Lankan Brunch", price: "LKR 2,450", desc: "pol roti, eggs, coconut sambol, avocado, mushroom and seasonal fruits" },
+      { name: "Garden Brunch", price: "LKR 2,650", desc: "eggs, avocado, sourdough, roasted tomato and greens" },
+      { name: "Fisherman's Brunch", price: "LKR 3,200", desc: "smoked tuna, eggs, avocado, and sourdough" },
+      { name: "Vegan Village Plate", price: "LKR 2,250", desc: "pol roti, hummus, roasted vegetables and gotukola salad" },
+      { name: "Avocado Toast", price: "LKR 2,200", desc: "Fresh smashed avocado on artisanal toasted sourdough" },
+      { name: "Garlic Mushroom Toast", price: "LKR 2,200", desc: "Sautéed garlic mushrooms on toasted sourdough" },
+      { name: "Smoked Tuna Toast", price: "LKR 2,800", desc: "Smoked tuna spread served on toasted sourdough" },
+      { name: "Chicken & Avocado Toast", price: "LKR 2,250", desc: "Grilled chicken, smashed avocado on sourdough" },
+      { name: "Hummus & Roasted Vegetable Wrap", price: "LKR 1,600", desc: "House hummus with warm roasted tropical vegetables" },
+      { name: "Sweet Potato Fries", price: "LKR 800", desc: "Crispy seasoned golden sweet potato fries" }
+    ],
+    addons: [
+      { name: "Bacon", price: "LKR 600" },
+      { name: "2 Eggs (fried, boiled, scrambled)", price: "LKR 400" }
     ]
   },
   {
-    category: "All-Day Brunch",
+    id: "smoothie-bowls",
+    category: "Smoothie Bowls",
+    subtitle: "Fresh Tropical Fuel",
     items: [
-      { name: "Ahangama Avocado Toast", price: "$9.00", desc: "Sourdough, smashed avocado, poached egg, chili flakes" },
-      { name: "Tropical Acai & Dragonfruit Bowl", price: "$8.50", desc: "Fresh passionfruit, toasted granola, local banana" },
-      { name: "Traditional Hopper Set", price: "$10.00", desc: "Egg hoppers with lunu miris and coconut sambal" }
+      { name: "Golden Tropics Bowl", price: "LKR 2,500", desc: "Mango, passionfruit & pineapple smoothie base with coconut flakes" },
+      { name: "Green Glow Bowl", price: "LKR 2,500", desc: "Nutrient-dense spinach, avocado & banana blend" },
+      { name: "Monkey Fuel Bowl", price: "LKR 2,500", desc: "Peanut butter, raw cacao, banana & almond milk blend" }
+    ]
+  },
+  {
+    id: "evening-menu",
+    category: "Served From 5 PM",
+    subtitle: "Soups, Salads, Wings & Sushi Bar 🍣",
+    subsections: [
+      {
+        subtitle: "Soups",
+        items: [
+          { name: "Tom Yum Soup", price: "LKR 2,200", desc: "Served with steamed rice or grilled sourdough toast" },
+          { name: "Roasted Pumpkin & Chicken Soup", price: "LKR 1,800", desc: "Creamy roasted pumpkin soup with tender chicken" }
+        ]
+      },
+      {
+        subtitle: "Salads",
+        items: [
+          { name: "Island Green Bowl", price: "LKR 1,400", desc: "Fresh island greens, house dressing & seeds" }
+        ]
+      },
+      {
+        subtitle: "Wings at 87",
+        items: [
+          { name: "Fried Chicken Wings (6 pcs) & Potato Wedges", price: "LKR 1,750", desc: "Crispy seasoned chicken wings served with golden wedges" }
+        ]
+      },
+      {
+        subtitle: "Sushi Bar 🍣",
+        items: [
+          { name: "Miso Soup", price: "LKR 1,000", desc: "Traditional Japanese miso soup" },
+          { name: "Tuna Maki", price: "LKR 2,500", desc: "Fresh tuna sushi roll" },
+          { name: "Spicy Tuna Roll", price: "LKR 2,500", desc: "Fresh local tuna with spicy mayo roll" },
+          { name: "California Roll", price: "LKR 3,200", desc: "Crab, avocado, cucumber & sushi rice" }
+        ]
+      }
+    ],
+    addons: [
+      { name: "Grilled Chicken (200g)", price: "LKR 550" },
+      { name: "Grilled Tuna (200g)", price: "LKR 550" },
+      { name: "Two Eggs (Fried, Boiled or Scrambled)", price: "LKR 400" }
+    ]
+  },
+  {
+    id: "coffee-tea",
+    category: "Coffee & Tea",
+    subtitle: "Single Origin Brews & Ceylon Teas ☕",
+    subsections: [
+      {
+        subtitle: "Coffee",
+        items: [
+          { name: "Espresso", price: "LKR 800" },
+          { name: "Double Espresso", price: "LKR 900" },
+          { name: "Cappuccino", price: "LKR 1,100" },
+          { name: "Latte", price: "LKR 1,100" },
+          { name: "Iced Latte", price: "LKR 1,200" },
+          { name: "Flat White", price: "LKR 1,100" },
+          { name: "Mocha", price: "LKR 1,400" },
+          { name: "Coco Iced Coffee", price: "LKR 1,400" }
+        ]
+      },
+      {
+        subtitle: "Tea",
+        items: [
+          { name: "Ceylon Black Tea", price: "LKR 800" },
+          { name: "Green Tea", price: "LKR 800" },
+          { name: "Ginger Tea", price: "LKR 800" },
+          { name: "Lemon Iced Tea", price: "LKR 1,000" }
+        ]
+      }
+    ]
+  },
+  {
+    id: "juices-smoothies",
+    category: "Smoothies & Juices",
+    subtitle: "100% Fresh Tropical Fruits 🍹",
+    subsections: [
+      {
+        subtitle: "Smoothies",
+        items: [
+          { name: "Tropical Mango", price: "LKR 1,500" },
+          { name: "Tropical Green Detox", price: "LKR 1,200" },
+          { name: "Banana Peanut", price: "LKR 1,500" }
+        ]
+      },
+      {
+        subtitle: "Fresh Juices",
+        items: [
+          { name: "Watermelon", price: "LKR 1,000" },
+          { name: "Pineapple", price: "LKR 1,100" },
+          { name: "Passion Fruit", price: "LKR 1,200" },
+          { name: "Mango", price: "LKR 1,200" },
+          { name: "King Coconut", price: "LKR 500" }
+        ]
+      }
+    ]
+  },
+  {
+    id: "bar-drinks",
+    category: "Cocktails & Drinks",
+    subtitle: "Signature Cocktails, Wine & Cold Drinks 🍸",
+    subsections: [
+      {
+        subtitle: "Cocktails 🍸",
+        items: [
+          { name: "Arrack Sour", price: "LKR 1,800" },
+          { name: "Classic Mojito", price: "LKR 1,800" },
+          { name: "Passion Mojito", price: "LKR 1,800" },
+          { name: "87 Special", price: "LKR 2,000" },
+          { name: "Spicy Margarita", price: "LKR 2,400" },
+          { name: "Passion Margarita", price: "LKR 2,400" }
+        ]
+      },
+      {
+        subtitle: "Beer & Wine 🍺🍷",
+        items: [
+          { name: "Lion Lager (Beer)", price: "LKR 1,000" },
+          { name: "Glass of White Wine", price: "LKR 2,500" },
+          { name: "Glass of Red Wine", price: "LKR 2,500" }
+        ]
+      },
+      {
+        subtitle: "Soft Drinks 🥤",
+        items: [
+          { name: "Coca Cola", price: "LKR 500" },
+          { name: "Zero Cola", price: "LKR 500" },
+          { name: "Sprite", price: "LKR 500" },
+          { name: "Soda", price: "LKR 400" },
+          { name: "Water", price: "LKR 300" }
+        ]
+      }
+    ]
+  },
+  {
+    id: "dessert",
+    category: "Dessert",
+    subtitle: "Sweet Treats & Pancakes 🍰",
+    items: [
+      { name: "Brownie Bliss", price: "LKR 1,800", desc: "Warm chocolate brownie served with local vanilla bean gelato" },
+      { name: "Island Pancakes", price: "LKR 1,500", desc: "Fluffy pancakes served with tropical fruit & coconut syrup" }
     ]
   }
 ];
+
+export const cafeMenuImage = "/assets/images/cafe-menu-full.jpg";
