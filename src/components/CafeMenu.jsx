@@ -391,36 +391,43 @@ export default function CafeMenu() {
 
       {/* Full Paper Menu Image Modal */}
       {isImageModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-scaleUp">
-          <div className="relative max-w-4xl w-full max-h-[90vh] bg-[#0D1638] border border-[#ECC46C]/40 rounded-2xl overflow-hidden flex flex-col shadow-2xl">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-[#ECC46C]/30 bg-[#0A0F29]">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/92 backdrop-blur-md animate-scaleUp"
+          onClick={() => setIsImageModalOpen(false)}
+        >
+          <div
+            className="relative max-w-2xl w-full max-h-[92vh] bg-[#0D1638] border border-[#ECC46C]/40 rounded-2xl overflow-hidden flex flex-col shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between px-5 py-3.5 border-b border-[#ECC46C]/30 bg-[#0A0F29]">
               <div>
-                <h3 className="font-serif text-lg font-bold text-white">87 Café &amp; Restaurant Official Menu</h3>
-                <p className="text-xs text-[#ECC46C]">Original Printed Menu Graphic</p>
+                <h3 className="font-serif text-base sm:text-lg font-bold text-white">87 Café &amp; Restaurant Official Menu</h3>
+                <p className="text-[11px] text-[#ECC46C]">Original Printed Menu Graphic</p>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 <a
                   href={cafeMenuImage}
                   download="87-Cafe-Menu.jpg"
                   className="p-2 bg-[#ECC46C]/10 hover:bg-[#ECC46C] hover:text-[#0A0F29] text-[#ECC46C] rounded-lg transition-colors"
                   title="Download Image"
                 >
-                  <Download className="w-5 h-5" />
+                  <Download className="w-4 h-4" />
                 </a>
                 <button
                   onClick={() => setIsImageModalOpen(false)}
                   className="p-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors"
+                  aria-label="Close menu modal"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
             </div>
 
-            <div className="overflow-auto p-4 flex justify-center bg-[#070B1E]">
+            <div className="overflow-y-auto p-4 flex justify-center items-center bg-[#070B1E] flex-1">
               <img
                 src={cafeMenuImage}
                 alt="87 Cafe & Restaurant official paper menu"
-                className="max-w-full h-auto rounded-lg shadow-xl"
+                className="max-h-[75vh] w-auto object-contain rounded-lg shadow-2xl border border-[#ECC46C]/20"
               />
             </div>
           </div>
