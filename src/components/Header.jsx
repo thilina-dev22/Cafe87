@@ -33,6 +33,13 @@ export default function Header({ onBookClick }) {
 
   const handleNavClick = () => setMobileMenuOpen(false);
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return undefined;
+    const onKey = (e) => e.key === 'Escape' && setMobileMenuOpen(false);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [mobileMenuOpen]);
+
   return (
     <>
       <header
@@ -46,12 +53,14 @@ export default function Header({ onBookClick }) {
           <div className="flex items-center justify-between h-16 sm:h-20">
 
             {/* Brand Logo */}
-            <a href="#hero" className="flex items-center gap-2.5 sm:gap-3 group min-w-0" onClick={handleNavClick}>
+            <a href="#hero" className="flex items-center gap-2.5 sm:gap-3 group min-w-0" onClick={handleNavClick} aria-label="87 Ahangama — back to top">
               <img
                 src={siteConfig.logo}
                 alt="87 Ahangama emblem logo"
+                width="42"
+                height="56"
+                decoding="async"
                 className="h-11 sm:h-14 w-auto object-contain shrink-0 transition-transform group-hover:scale-105"
-                onError={(e) => { e.target.style.display = 'none'; }}
               />
               <div className="flex flex-col min-w-0">
                 <span className="font-serif text-base sm:text-xl font-bold text-white tracking-widest leading-none truncate">
@@ -64,12 +73,12 @@ export default function Header({ onBookClick }) {
             </a>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-7">
+            <nav aria-label="Primary" className="hidden lg:flex items-center gap-7">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-gray-300 hover:text-[#C5A059] text-xs font-semibold tracking-widest uppercase transition-colors"
+                  className="text-gray-200 hover:text-[#ECC46C] text-xs font-semibold tracking-widest uppercase transition-colors"
                 >
                   {link.name}
                 </a>
@@ -83,7 +92,7 @@ export default function Header({ onBookClick }) {
                 className="bg-gradient-to-r from-[#C5A059] to-[#E5C483] hover:from-[#E5C483] hover:to-[#C5A059] text-[#0A0D12] font-bold text-[11px] sm:text-sm uppercase tracking-wider px-3 sm:px-5 py-2.5 rounded shadow-lg transition-all active:scale-95 flex items-center gap-1.5 min-h-[44px]"
                 aria-label="Book a stay"
               >
-                <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" aria-hidden="true" />
                 <span>Book Stay</span>
               </button>
 
@@ -93,6 +102,7 @@ export default function Header({ onBookClick }) {
                 className="lg:hidden flex items-center justify-center w-11 h-11 text-white rounded-lg hover:bg-white/10 focus:outline-none transition-colors"
                 aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-nav"
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
@@ -106,13 +116,14 @@ export default function Header({ onBookClick }) {
         <div
           className="fixed inset-0 z-40 lg:hidden"
           onClick={handleNavClick}
-          aria-hidden="true"
         >
           {/* Dark backdrop */}
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
 
           {/* Drawer panel sliding from top */}
           <nav
+            id="mobile-nav"
+            aria-label="Mobile"
             className="absolute top-16 left-0 right-0 bg-[#0A0D12] border-b border-[#C5A059]/30 shadow-2xl animate-slideDown"
             onClick={(e) => e.stopPropagation()}
           >

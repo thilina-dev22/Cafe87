@@ -1,39 +1,31 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Send, CheckCircle2, Loader2, ExternalLink } from 'lucide-react';
 import { siteConfig } from '../data/siteData';
+import { submitForm, whatsappLink } from '../lib/submitForm';
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
-    const apiKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || siteConfig.web3formsAccessKey;
-
+    setError(false);
     try {
-      if (apiKey) {
-        await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({
-            access_key: apiKey,
-            subject: `Website Inquiry: ${formData.subject}`,
-            from_name: formData.name,
-            name: formData.name,
-            email: formData.email,
-            message: formData.message,
-          }),
-        });
-      }
+      await submitForm({
+        subject: `Website Inquiry: ${formData.subject}`,
+        from_name: formData.name,
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+      });
       setSubmitted(true);
-      setTimeout(() => setSubmitted(false), 5000);
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (err) {
       console.error(err);
-      setSubmitted(true);
+      setError(true);
     } finally {
       setLoading(false);
     }
@@ -98,7 +90,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-bold text-white text-base">Phone & WhatsApp</h4>
-                    <a href={`tel:${siteConfig.phone}`} className="text-[#C5A059] font-semibold hover:underline text-base block mt-0.5">
+                    <a href={`tel:${siteConfig.phoneTel}`} className="text-[#C5A059] font-semibold hover:underline text-base block mt-0.5">
                       {siteConfig.phone}
                     </a>
                   </div>
@@ -160,8 +152,19 @@ export default function Contact() {
               Send Us A Message
             </h3>
 
+            {error && (
+              <div role="alert" className="bg-red-500/10 border border-red-500/40 text-red-200 p-4 rounded-xl mb-6 text-sm leading-relaxed">
+                We couldn't send your message. Please{' '}
+                <a href={whatsappLink(`Hi 87 Ahangama, ${formData.message || 'I have a question.'}`)} target="_blank" rel="noopener noreferrer" className="underline font-bold text-white">
+                  message us on WhatsApp
+                </a>{' '}
+                or email{' '}
+                <a href={`mailto:${siteConfig.email}`} className="underline font-bold text-white">{siteConfig.email}</a>.
+              </div>
+            )}
+
             {submitted && (
-              <div className="bg-emerald-500/10 border border-emerald-500/50 text-emerald-400 p-4 rounded-xl mb-6 flex items-center gap-3">
+              <div role="status" className="bg-emerald-500/10 border border-emerald-500/50 text-emerald-400 p-4 rounded-xl mb-6 flex items-center gap-3">
                 <CheckCircle2 className="w-5 h-5 shrink-0" />
                 <span className="text-sm">Thank you! Your message has been sent. We will respond shortly.</span>
               </div>
@@ -169,10 +172,12 @@ export default function Contact() {
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Your Name</label>
+                <label htmlFor="ct-name" className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Your Name</label>
                 <input
                   type="text"
                   required
+                  id="ct-name"
+                  autoComplete="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="e.g. John Smith"
@@ -181,10 +186,12 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Your Email</label>
+                <label htmlFor="ct-email" className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Your Email</label>
                 <input
                   type="email"
                   required
+                  id="ct-email"
+                  autoComplete="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="e.g. john@example.com"
@@ -193,10 +200,11 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Subject</label>
+                <label htmlFor="ct-subject" className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Subject</label>
                 <input
                   type="text"
                   required
+                  id="ct-subject"
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   placeholder="Room Inquiry / Cafe Reservation"
@@ -205,10 +213,11 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Message</label>
+                <label htmlFor="ct-message" className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5">Message</label>
                 <textarea
                   rows={4}
                   required
+                  id="ct-message"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="How can we help you?"
@@ -260,10 +269,10 @@ export default function Contact() {
           </div>
           <div className="w-full h-80 sm:h-96 rounded-xl overflow-hidden border border-[#C5A059]/20 relative shadow-2xl">
             <iframe
-              title="87 Ahangama Location Map"
+              title="Map showing the location of 87 Ahangama"
               src="https://maps.google.com/maps?q=87%20Ahangama,%20Ahangama,%20Sri%20Lanka&t=&z=16&ie=UTF8&iwloc=&output=embed"
-              className="w-full h-full border-0 grayscale hover:grayscale-0 transition-all duration-500"
-              allowFullScreen=""
+              className="w-full h-full border-0 grayscale hover:grayscale-0 focus:grayscale-0 transition-all duration-500"
+              allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
