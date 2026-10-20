@@ -21,7 +21,6 @@
     background-color: #0A0F29;
     color: #F3F4F6;
     /* Prevent horizontal overflow on mobile */
-    overflow-x: hidden;
   }
 
   body {
@@ -95,9 +94,6 @@
    ========================================== */
 .body-locked {
   overflow: hidden;
-  /* Prevent scroll-bounce behind the drawer */
-  position: fixed;
-  width: 100%;
 }
 
 /* ==========================================
@@ -118,12 +114,41 @@
 }
 .animate-scaleUp { animation: scaleUp 0.2s ease forwards; }
 
-/* ==========================================
-   HERO: disable background-attachment: fixed
-   on iOS (bg-fixed causes blank on Safari)
-   ========================================== */
-@supports (-webkit-touch-callout: none) {
-  .hero-bg {
-    background-attachment: scroll !important;
+
+
+/* Keyboard focus ring for every interactive element */
+:focus-visible {
+  outline: 2px solid #ECC46C;
+  outline-offset: 2px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  background: #ECC46C;
+  color: #0A0F29;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  transition: top 0.2s;
+}
+.skip-link:focus { top: 1rem; }
+
+/* Anchor targets sit below the fixed header */
+section[id]:not(#hero) { scroll-margin-top: 4rem; }
+
+/* Missing keyframes referenced by components */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.animate-fadeIn { animation: fadeIn 0.2s ease forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

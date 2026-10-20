@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { galleryData } from '../data/siteData';
 import { X, ZoomIn, ChevronLeft, ChevronRight } from 'lucide-react';
+import Img from './Img';
+import useDialogKeys from '../hooks/useDialogKeys';
 
-const CATEGORIES = ['All', 'Resort', 'Rooms', 'Bathrooms', 'Cafe'];
+const CATEGORIES = ['All', 'Resort', 'Rooms', 'Bathrooms', 'Cafe', 'Gardens'];
 
 export default function Gallery() {
   const [filter, setFilter] = useState('All');
@@ -66,8 +68,10 @@ export default function Gallery() {
 
   const currentImage = activeIdx !== null ? filtered[activeIdx] : null;
 
+  useDialogKeys(currentImage !== null, { onClose: closeLightbox, onNext: () => goToNext(), onPrev: () => goToPrev() });
+
   return (
-    <section id="gallery" className="py-16 sm:py-24 bg-[#0A0F29] border-t border-[#ECC46C]/15 select-none">
+    <section id="gallery" className="py-16 sm:py-24 bg-[#0A0F29] border-t border-[#ECC46C]/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
@@ -85,6 +89,7 @@ export default function Gallery() {
             <button
               key={cat}
               onClick={() => setFilter(cat)}
+              aria-pressed={filter === cat}
               className={`min-h-[40px] px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-250 ${
                 filter === cat
                   ? 'bg-gradient-to-r from-[#D7AD50] to-[#ECC46C] text-[#0A0F29] shadow-xl scale-105 font-bold'
@@ -102,12 +107,13 @@ export default function Gallery() {
             <button
               key={item.id}
               onClick={() => openLightbox(idx)}
+              aria-label={`Enlarge photo: ${item.title}`}
               className="group relative h-64 sm:h-72 rounded-2xl overflow-hidden glass-effect text-left border border-[#ECC46C]/20 hover:border-[#ECC46C]/50 transition-all duration-300 shadow-xl"
             >
-              <img
+              <Img
                 src={item.url}
                 alt={item.title}
-                loading="lazy"
+                sizes="(min-width: 1024px) 384px, (min-width: 640px) 50vw, 100vw"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               {/* Overlay */}
@@ -136,6 +142,9 @@ export default function Gallery() {
       {/* Swipeable Full-Screen Lightbox Modal */}
       {currentImage && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={currentImage.title}
           className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 touch-pan-y"
           onClick={closeLightbox}
           onTouchStart={handleTouchStart}
@@ -145,6 +154,7 @@ export default function Gallery() {
           {/* Close button */}
           <button
             onClick={closeLightbox}
+            autoFocus
             className="absolute top-4 right-4 sm:top-6 sm:right-6 p-3 bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors z-20"
             aria-label="Close lightbox"
           >
@@ -187,7 +197,7 @@ export default function Gallery() {
               <div className="flex items-center justify-center gap-3 text-xs">
                 <span className="text-[#ECC46C] font-semibold uppercase tracking-wider">{currentImage.category}</span>
                 <span className="text-gray-400">•</span>
-                <span className="text-gray-300 font-sans">{activeIdx + 1} of {filtered.length} photos (↔ Swipe left/right)</span>
+                <span className="text-gray-300 font-sans">{activeIdx + 1} of {filtered.length} photos</span>
               </div>
             </div>
           </div>

@@ -20,8 +20,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#0A0D12] overflow-x-hidden">
+      <a href="#main" className="skip-link">Skip to main content</a>
       <Header onBookClick={() => handleOpenBooking(null)} />
-      <main>
+      <main id="main">
         <Hero onBookClick={() => handleOpenBooking(null)} />
         <Rooms onBookRoom={(room) => handleOpenBooking(room)} />
         <CafeMenu />

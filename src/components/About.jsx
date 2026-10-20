@@ -1,5 +1,6 @@
 import React from 'react';
 import { Compass, Heart, Star } from 'lucide-react';
+import Img from './Img';
 
 export default function About() {
   return (
@@ -17,11 +18,11 @@ export default function About() {
             <div className="w-14 h-0.5 bg-[#ECC46C] mb-5"></div>
 
             <p className="text-gray-300 text-sm sm:text-base lg:text-lg leading-relaxed mb-4">
-              Situated in the vibrant coastal hub of Ahangama,{' '}
+              Situated in the vibrant coastal hub of Ahangama on Sri Lanka's southern coast,{' '}
               <strong className="text-white">87 Ahangama</strong> is an exclusive boutique residence featuring two luxury suites — <strong className="text-[#ECC46C]">Sun Room</strong> &amp; <strong className="text-[#ECC46C]">Moon Room</strong> — and an artisanal cafe created for travelers, surfers, and dreamers seeking tranquil luxury.
             </p>
 
-            <p className="text-gray-400 text-sm sm:text-base leading-relaxed mb-8">
+            <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-8">
               From hand-crafted four-poster canopy beds and artisanal earthen bathrooms to locally roasted specialty coffee, we blend warm Sri Lankan hospitality with modern luxury.
             </p>
 
@@ -31,8 +32,8 @@ export default function About() {
                   <Compass className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-sm sm:text-base">Prime Location</h4>
-                  <p className="text-gray-400 text-xs mt-0.5">Moments from Ahangama's surf points &amp; beaches</p>
+                  <h3 className="font-bold text-white text-sm sm:text-base">Prime Location</h3>
+                  <p className="text-gray-300 text-xs mt-0.5">Moments from Ahangama's surf points &amp; beaches</p>
                 </div>
               </div>
 
@@ -41,8 +42,8 @@ export default function About() {
                   <Heart className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-sm sm:text-base">Warm Hospitality</h4>
-                  <p className="text-gray-400 text-xs mt-0.5">Personalized service &amp; local recommendations</p>
+                  <h3 className="font-bold text-white text-sm sm:text-base">Warm Hospitality</h3>
+                  <p className="text-gray-300 text-xs mt-0.5">Personalized service &amp; local recommendations</p>
                 </div>
               </div>
             </div>
@@ -51,10 +52,10 @@ export default function About() {
           {/* Image Card — rating badge sits INSIDE on mobile to avoid clipping */}
           <div className="relative mt-8 lg:mt-0">
             <div className="glass-effect rounded-2xl p-2.5 sm:p-3 overflow-hidden shadow-2xl">
-              <img
-                src="/assets/images/real/property-exterior.jpg"
-                alt="87 Ahangama property entrance gate"
-                loading="lazy"
+              <Img
+                src="/assets/images/real/resort-villa-exterior-day.jpg"
+                alt="87 Ahangama boutique villa and tropical lawns in daylight"
+                sizes="(min-width: 1024px) 560px, 100vw"
                 className="w-full h-64 sm:h-80 lg:h-[420px] object-cover rounded-xl"
               />
             </div>
@@ -63,7 +64,7 @@ export default function About() {
             <div className="absolute bottom-4 left-4 sm:-bottom-6 sm:-left-5
                             bg-[#0F194C]/95 border border-[#C5A059] backdrop-blur-md
                             px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2">
-              <Star className="w-5 h-5 text-[#C5A059] fill-[#C5A059] shrink-0" />
+              <Star className="w-5 h-5 text-[#C5A059] fill-[#C5A059] shrink-0" aria-hidden="true" />
               <div>
                 <span className="font-serif text-2xl sm:text-3xl font-bold text-[#C5A059] leading-none">4.9</span>
                 <p className="text-[9px] sm:text-[10px] text-gray-200 uppercase tracking-widest mt-0.5">Guest Rating</p>

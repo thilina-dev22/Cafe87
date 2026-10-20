@@ -2,50 +2,72 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
-    <!-- Mobile viewport: prevent zoom on input focus, safe area support -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
     <meta name="theme-color" content="#0A0F29" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- Icons / PWA -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Primary Meta Tags -->
-    <title>87 Ahangama — Luxury Coastal Residence &amp; Cafe in Sri Lanka</title>
-    <meta name="title" content="87 Ahangama — Luxury Coastal Residence &amp; Cafe in Sri Lanka" />
-    <meta name="description" content="Discover 87 Ahangama, a tranquil coastal escape in Ahangama, Sri Lanka. Boutique luxury rooms, artisanal cafe, and serene ocean views." />
-    <meta name="keywords" content="87 Ahangama, 87ahangama, Ahangama hotel, Ahangama villa, boutique hotel Sri Lanka, Ahangama cafe, coastal villa Sri Lanka, surf stay Ahangama, rooms in Ahangama" />
+    <title>87 Ahangama | Boutique Rooms &amp; Cafe in Ahangama, Sri Lanka</title>
+    <meta name="description" content="Stay at 87 Ahangama: two private boutique suites and a tropical garden cafe near Ahangama's surf beaches, Sri Lanka. Rooms from $24 a night. Book direct." />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content="87 Ahangama" />
     <link rel="canonical" href="https://87ahangama.com/" />
-    <link rel="alternate" hreflang="en" href="https://87ahangama.com/" />
-    <link rel="alternate" hreflang="x-default" href="https://87ahangama.com/" />
 
-    <!-- Geo Tags for Local SEO -->
+    <!-- Local SEO -->
     <meta name="geo.region" content="LK-3" />
     <meta name="geo.placename" content="Ahangama, Southern Province, Sri Lanka" />
     <meta name="geo.position" content="5.9723;80.3644" />
-    <meta name="ICBM" content="5.9723, 80.3644" />
 
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://87ahangama.com/" />
     <meta property="og:site_name" content="87 Ahangama" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:title" content="87 Ahangama — Luxury Coastal Residence &amp; Cafe in Sri Lanka" />
-    <meta property="og:description" content="Discover 87 Ahangama, a tranquil coastal escape in Ahangama, Sri Lanka. Boutique luxury rooms, artisanal cafe, and serene ocean views." />
-    <meta property="og:image" content="https://87ahangama.com/assets/images/87-logo-official.png" />
+    <meta property="og:title" content="87 Ahangama | Boutique Rooms &amp; Cafe in Ahangama, Sri Lanka" />
+    <meta property="og:description" content="Two private boutique suites and a tropical garden cafe in Ahangama, Sri Lanka. Rooms from $24 a night. Book direct." />
+    <meta property="og:image" content="https://87ahangama.com/assets/images/og-cover.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="1600" />
-    <meta property="og:image:alt" content="87 Ahangama Emblem & Celestial Logo" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="87 Ahangama boutique villa and tropical garden in Ahangama, Sri Lanka" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://87ahangama.com/" />
-    <meta property="twitter:title" content="87 Ahangama — Luxury Coastal Residence &amp; Cafe in Sri Lanka" />
-    <meta property="twitter:description" content="Discover 87 Ahangama, a tranquil coastal escape in Ahangama, Sri Lanka. Boutique luxury rooms, artisanal cafe, and serene ocean views." />
-    <meta property="twitter:image" content="https://87ahangama.com/assets/images/87-logo-Final-web-1200x1595.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="87 Ahangama | Boutique Rooms &amp; Cafe in Ahangama, Sri Lanka" />
+    <meta name="twitter:description" content="Two private boutique suites and a tropical garden cafe in Ahangama, Sri Lanka. Rooms from $24 a night. Book direct." />
+    <meta name="twitter:image" content="https://87ahangama.com/assets/images/og-cover.jpg" />
+    <meta name="twitter:image:alt" content="87 Ahangama boutique villa and tropical garden in Ahangama, Sri Lanka" />
 
-    <!-- Schema.org JSON-LD Structured Data for Google Rich Snippets -->
+    <!-- Performance: fetch the LCP (hero) image immediately, in the right size -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/assets/images/real/property-exterior-960.webp"
+      imagesrcset="/assets/images/real/property-exterior-480.webp 480w, /assets/images/real/property-exterior-960.webp 960w"
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
+
+    <!-- Fonts: non-render-blocking, only the weights in use -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=La+Belle+Aurore&family=Outfit:wght@300;400;500;600;700&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=La+Belle+Aurore&family=Outfit:wght@300;400;500;600;700&display=swap" />
+    </noscript>
+
+    <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -54,17 +76,27 @@
           "@type": "Hotel",
           "@id": "https://87ahangama.com/#hotel",
           "name": "87 Ahangama",
+          "alternateName": "87 Ahangama Residence & Cafe",
           "url": "https://87ahangama.com/",
           "logo": "https://87ahangama.com/assets/images/87-logo-official.png",
-          "image": "https://87ahangama.com/assets/images/87-logo-official.png",
-          "description": "Boutique coastal residence and luxury rooms in Ahangama, Sri Lanka.",
+          "image": [
+            "https://87ahangama.com/assets/images/og-cover.jpg",
+            "https://87ahangama.com/assets/images/real/resort-villa-exterior-day.jpg",
+            "https://87ahangama.com/assets/images/real/moon-room-canopy-bed.jpg",
+            "https://87ahangama.com/assets/images/real/sun-room-bed-front.jpg",
+            "https://87ahangama.com/assets/images/real/cafe-night-pergola-dining.jpg"
+          ],
+          "description": "Boutique residence in Ahangama, Sri Lanka, with two private air-conditioned suites (Sun Room and Moon Room), a tropical garden and an artisanal cafe.",
           "telephone": "+94742087870",
           "email": "info@87ahangama.com",
-          "priceRange": "$$",
+          "priceRange": "From $24",
+          "currenciesAccepted": "LKR, USD",
+          "numberOfRooms": 2,
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "X98G+9VQ",
             "addressLocality": "Ahangama",
+            "addressRegion": "Southern Province",
             "postalCode": "80650",
             "addressCountry": "LK"
           },
@@ -73,6 +105,36 @@
             "latitude": 5.9723,
             "longitude": 80.3644
           },
+          "hasMap": "https://maps.app.goo.gl/JCFjTQmnwqfHdufQ7",
+          "amenityFeature": [
+            { "@type": "LocationFeatureSpecification", "name": "Free Wi-Fi", "value": true },
+            { "@type": "LocationFeatureSpecification", "name": "Air conditioning", "value": true },
+            { "@type": "LocationFeatureSpecification", "name": "Private entrance", "value": true },
+            { "@type": "LocationFeatureSpecification", "name": "On-site cafe", "value": true },
+            { "@type": "LocationFeatureSpecification", "name": "Garden", "value": true }
+          ],
+          "containsPlace": [
+            {
+              "@type": "HotelRoom",
+              "@id": "https://87ahangama.com/#sun-room",
+              "name": "Sun Room",
+              "description": "Bright air-conditioned private suite with an extra-large double bed, earthen en-suite bathroom, minibar, flat-screen TV and private entrance.",
+              "image": "https://87ahangama.com/assets/images/real/sun-room.jpg",
+              "bed": { "@type": "BedDetails", "numberOfBeds": 1, "typeOfBed": "Extra-large double" },
+              "floorSize": { "@type": "QuantitativeValue", "value": 148, "unitCode": "FTK" },
+              "occupancy": { "@type": "QuantitativeValue", "maxValue": 2 }
+            },
+            {
+              "@type": "HotelRoom",
+              "@id": "https://87ahangama.com/#moon-room",
+              "name": "Moon Room",
+              "description": "Air-conditioned four-poster teak canopy suite with mosquito-net drapery, minibar, tea/coffee station and earthen en-suite bathroom.",
+              "image": "https://87ahangama.com/assets/images/real/moon-room.jpg",
+              "bed": { "@type": "BedDetails", "numberOfBeds": 1, "typeOfBed": "Four-poster double" },
+              "floorSize": { "@type": "QuantitativeValue", "value": 165, "unitCode": "FTK" },
+              "occupancy": { "@type": "QuantitativeValue", "maxValue": 2 }
+            }
+          ],
           "sameAs": [
             "https://www.facebook.com/87ahangama",
             "https://www.instagram.com/87ahangama/",
@@ -81,59 +143,52 @@
           ]
         },
         {
-          "@type": "Restaurant",
+          "@type": "CafeOrCoffeeShop",
           "@id": "https://87ahangama.com/#cafe",
-          "name": "Cafe 87",
-          "url": "https://87ahangama.com/",
-          "image": "https://87ahangama.com/assets/images/87-logo-Final-web-1200x1595.png",
+          "name": "87 Cafe",
+          "url": "https://87ahangama.com/#cafe",
+          "image": "https://87ahangama.com/assets/images/real/cafe-night-pergola-dining.jpg",
           "telephone": "+94742087870",
-          "priceRange": "$$",
-          "servesCuisine": ["Artisanal Cafe", "Breakfast", "Sri Lankan", "Specialty Coffee"],
+          "priceRange": "LKR 800 - LKR 3,200",
+          "servesCuisine": ["Sri Lankan", "Brunch", "Sushi", "Specialty Coffee"],
+          "hasMenu": "https://87ahangama.com/#cafe",
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "X98G+9VQ",
             "addressLocality": "Ahangama",
+            "addressRegion": "Southern Province",
             "postalCode": "80650",
             "addressCountry": "LK"
-          }
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 5.9723,
+            "longitude": 80.3644
+          },
+          "parentOrganization": { "@id": "https://87ahangama.com/#hotel" }
         },
         {
           "@type": "WebSite",
           "@id": "https://87ahangama.com/#website",
           "url": "https://87ahangama.com/",
           "name": "87 Ahangama",
-          "description": "Luxury Coastal Residence & Cafe in Ahangama, Sri Lanka",
-          "publisher": {
-            "@id": "https://87ahangama.com/#hotel"
-          },
-          "inLanguage": "en-US"
+          "description": "Boutique rooms and cafe in Ahangama, Sri Lanka",
+          "publisher": { "@id": "https://87ahangama.com/#hotel" },
+          "inLanguage": "en"
         },
         {
-          "@type": "HotelRoom",
-          "name": "Sun Room",
-          "description": "Sun room is a bright and comfortable private suite designed for up to 2 guests.",
-          "occupancy": {
-            "@type": "QuantitativeValue",
-            "value": 2
-          }
-        },
-        {
-          "@type": "HotelRoom",
-          "name": "Moon Room",
-          "description": "Air-conditioned four-poster canopy double suite with minibar, tea/coffee station, and luxury artisanal earthen bathroom.",
-          "occupancy": {
-            "@type": "QuantitativeValue",
-            "value": 2
-          }
+          "@type": "WebPage",
+          "@id": "https://87ahangama.com/#webpage",
+          "url": "https://87ahangama.com/",
+          "name": "87 Ahangama | Boutique Rooms & Cafe in Ahangama, Sri Lanka",
+          "isPartOf": { "@id": "https://87ahangama.com/#website" },
+          "about": { "@id": "https://87ahangama.com/#hotel" },
+          "primaryImageOfPage": "https://87ahangama.com/assets/images/og-cover.jpg",
+          "inLanguage": "en"
         }
       ]
     }
     </script>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=La+Belle+Aurore&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   </head>
   <body>
     <div id="root"></div>
