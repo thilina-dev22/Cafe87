@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { cafeMenuFull, cafeMenuImage } from '../data/siteData';
-import { Coffee, Utensils, Search, Maximize2, X, Download, Clock, Wine, GlassWater, Cookie, Sparkles, Moon, ChevronRight, ChevronLeft, ArrowLeft, ArrowRight } from 'lucide-react';
+import useDialogKeys from '../hooks/useDialogKeys';
+import { Coffee, Utensils, Search, Maximize2, X, Download, Clock, Wine, Cookie, Sparkles, Moon, ChevronRight, ChevronLeft, ArrowLeft, ArrowRight } from 'lucide-react';
 
 export default function CafeMenu() {
   const [activeCategory, setActiveCategory] = useState('all-day-brunch');
@@ -12,6 +13,8 @@ export default function CafeMenu() {
   const [touchEndX, setTouchEndX] = useState(null);
 
   const tabsRef = useRef(null);
+
+  useDialogKeys(isImageModalOpen, { onClose: () => setIsImageModalOpen(false) });
 
   const mainCategories = [
     { id: 'all-day-brunch', name: 'All Day Brunch', badge: 'Popular' },
@@ -104,7 +107,7 @@ export default function CafeMenu() {
   });
 
   return (
-    <section id="cafe" className="py-16 sm:py-24 bg-[#0A0F29] border-t border-[#ECC46C]/15 relative select-none">
+    <section id="cafe" className="py-16 sm:py-24 bg-[#0A0F29] border-t border-[#ECC46C]/15 relative">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -130,6 +133,7 @@ export default function CafeMenu() {
             <a
               href={cafeMenuImage}
               download="87-Cafe-Menu.jpg"
+              aria-label="Download the printed menu image"
               className="inline-flex items-center gap-2 px-4 py-2 bg-[#0D1638] hover:bg-[#14205E] border border-[#ECC46C]/25 text-gray-300 hover:text-white rounded-lg text-xs font-semibold uppercase tracking-wider transition-all active:scale-95"
             >
               <Download className="w-3.5 h-3.5 text-[#ECC46C]" />
@@ -145,12 +149,14 @@ export default function CafeMenu() {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            aria-label="Search the menu"
             placeholder="Search dish, coffee, sushi or cocktail..."
             className="w-full pl-11 pr-9 py-2.5 bg-[#0D1638] border border-[#ECC46C]/30 rounded-full text-white text-xs sm:text-sm focus:outline-none focus:border-[#ECC46C] shadow-inner placeholder-gray-400"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
+              aria-label="Clear search"
               className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
             >
               <X className="w-3.5 h-3.5" />
@@ -179,6 +185,7 @@ export default function CafeMenu() {
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
+                  aria-pressed={activeCategory === cat.id}
                   className={`px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all flex items-center gap-2 shrink-0 ${
                     activeCategory === cat.id
                       ? 'bg-gradient-to-r from-[#D7AD50] to-[#ECC46C] text-[#0A0F29] shadow-xl scale-[1.02]'
@@ -216,7 +223,7 @@ export default function CafeMenu() {
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Previous</span>
             </button>
-            <span className="text-gray-400 font-normal">
+            <span className="text-gray-300 font-normal">
               ↔ Swipe left / right on card
             </span>
             <button
@@ -392,6 +399,9 @@ export default function CafeMenu() {
       {/* Full Paper Menu Image Modal */}
       {isImageModalOpen && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Original printed menu"
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/92 backdrop-blur-md animate-scaleUp"
           onClick={() => setIsImageModalOpen(false)}
         >
@@ -417,6 +427,7 @@ export default function CafeMenu() {
                   onClick={() => setIsImageModalOpen(false)}
                   className="p-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors"
                   aria-label="Close menu modal"
+                  autoFocus
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -427,6 +438,9 @@ export default function CafeMenu() {
               <img
                 src={cafeMenuImage}
                 alt="87 Cafe & Restaurant official paper menu"
+                width="1024"
+                height="1536"
+                decoding="async"
                 className="max-h-[75vh] w-auto object-contain rounded-lg shadow-2xl border border-[#ECC46C]/20"
               />
             </div>

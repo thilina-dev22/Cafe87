@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Img from './Img';
+import useDialogKeys from '../hooks/useDialogKeys';
 import { roomsData } from '../data/siteData';
 import { Bed, Users, Maximize, CheckCircle, ShieldCheck, X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 
@@ -63,8 +65,10 @@ export default function Rooms({ onBookRoom }) {
     }
   };
 
+  useDialogKeys(!!selectedRoom, { onClose: closeModal, onNext: () => nextImage(), onPrev: () => prevImage() });
+
   return (
-    <section id="rooms" className="py-16 sm:py-24 bg-[#0A0F29] border-t border-[#ECC46C]/15 select-none">
+    <section id="rooms" className="py-16 sm:py-24 bg-[#0A0F29] border-t border-[#ECC46C]/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
@@ -85,10 +89,10 @@ export default function Rooms({ onBookRoom }) {
             >
               {/* Room Image */}
               <div className="relative h-64 sm:h-72 overflow-hidden">
-                <img
+                <Img
                   src={room.image}
-                  alt={room.name}
-                  loading="lazy"
+                  alt={`${room.name} — ${room.subtitle} at 87 Ahangama`}
+                  sizes="(min-width: 768px) 448px, 100vw"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 {/* Price badge */}
@@ -121,7 +125,7 @@ export default function Rooms({ onBookRoom }) {
                   </div>
                   <div className="flex flex-col items-center gap-1 py-1">
                     <Bed className="w-4 h-4 text-[#ECC46C]" />
-                    <span className="text-xs text-gray-200 font-medium">King Bed</span>
+                    <span className="text-xs text-gray-200 font-medium">Double Bed</span>
                   </div>
                 </div>
 
@@ -152,6 +156,7 @@ export default function Rooms({ onBookRoom }) {
                   <div className="grid grid-cols-2 gap-2.5">
                     <button
                       onClick={() => openModal(room)}
+                      aria-label={`View ${room.name} photos`}
                       className="min-h-[44px] border border-[#ECC46C] text-white hover:bg-[#ECC46C] hover:text-[#0A0F29]
                                  text-xs uppercase font-bold tracking-wider rounded-lg transition-all active:scale-[0.97]"
                     >
@@ -159,6 +164,7 @@ export default function Rooms({ onBookRoom }) {
                     </button>
                     <button
                       onClick={() => onBookRoom(room)}
+                      aria-label={`Book ${room.name} direct`}
                       className="min-h-[44px] bg-gradient-to-r from-[#D7AD50] to-[#ECC46C] hover:from-[#ECC46C] hover:to-[#D7AD50]
                                  text-[#0A0F29] text-xs uppercase font-bold tracking-wider rounded-lg transition-all active:scale-[0.97] shadow-xl"
                     >
@@ -196,6 +202,9 @@ export default function Rooms({ onBookRoom }) {
       {/* Swipeable Room Detail & Gallery Modal */}
       {selectedRoom && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${selectedRoom.name} details and photos`}
           className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-4"
           onClick={closeModal}
         >
@@ -208,7 +217,8 @@ export default function Rooms({ onBookRoom }) {
             {/* Close button */}
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 p-2 bg-[#0A0F29]/80 text-gray-300 hover:text-white rounded-full border border-[#ECC46C]/30 z-30"
+              autoFocus
+              className="absolute top-4 right-4 p-2.5 bg-[#0A0F29]/80 text-gray-300 hover:text-white rounded-full border border-[#ECC46C]/30 z-30"
               aria-label="Close room details"
             >
               <X className="w-5 h-5" />
@@ -238,12 +248,14 @@ export default function Rooms({ onBookRoom }) {
                 <>
                   <button
                     onClick={prevImage}
+                    aria-label="Previous photo"
                     className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 bg-[#0A0F29]/80 text-[#ECC46C] border border-[#ECC46C]/40 rounded-full hover:bg-[#ECC46C] hover:text-[#0A0F29] transition-all shadow-xl"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
                   <button
                     onClick={nextImage}
+                    aria-label="Next photo"
                     className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 bg-[#0A0F29]/80 text-[#ECC46C] border border-[#ECC46C]/40 rounded-full hover:bg-[#ECC46C] hover:text-[#0A0F29] transition-all shadow-xl"
                   >
                     <ChevronRight className="w-5 h-5" />
@@ -255,6 +267,8 @@ export default function Rooms({ onBookRoom }) {
                       <button
                         key={i}
                         onClick={() => setActiveImageIdx(i)}
+                        aria-label={`Show photo ${i + 1}`}
+                        aria-current={activeImageIdx === i}
                         className={`h-2 rounded-full transition-all ${
                           activeImageIdx === i ? 'w-5 bg-[#ECC46C]' : 'w-2 bg-white/40'
                         }`}
@@ -265,7 +279,7 @@ export default function Rooms({ onBookRoom }) {
               )}
             </div>
 
-            <p className="text-center text-[11px] text-gray-400 mb-5">
+            <p className="text-center text-[11px] text-gray-300 mb-5">
               ↔ Swipe left/right to view room &amp; bathroom photos
             </p>
 

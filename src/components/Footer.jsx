@@ -1,6 +1,6 @@
 import React from 'react';
 import { siteConfig } from '../data/siteData';
-import { MapPin, Phone, Mail, Globe, Heart } from 'lucide-react';
+import { MapPin, Phone, Mail, Heart } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -11,7 +11,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3.5 mb-4">
-              <img src={siteConfig.logo} alt="87 Ahangama official emblem" className="h-16 w-auto object-contain drop-shadow-xl" />
+              <img src={siteConfig.logo} alt="87 Ahangama official emblem" width="49" height="64" loading="lazy" decoding="async" className="h-16 w-auto object-contain drop-shadow-xl" />
               <div>
                 <span className="font-serif text-xl font-bold text-white tracking-wider block leading-tight">
                   87 AHANGAMA
@@ -22,7 +22,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
-              A luxury boutique coastal residence &amp; artisanal cafe in Ahangama, Sri Lanka. Offering sun-filled rooms, ocean views, and warm island hospitality.
+              A boutique coastal residence &amp; artisanal cafe in Ahangama, Sri Lanka. Two private garden-view suites, a tropical cafe, and warm island hospitality.
             </p>
             <div className="flex items-center gap-3 flex-wrap">
               <a
@@ -76,13 +76,17 @@ export default function Footer() {
               Quick Links
             </h4>
             <ul className="space-y-2.5 text-sm text-gray-300">
-              {['Home', 'Rooms', 'Cafe & Dining', 'Gallery', 'About Us', 'Contact'].map((item) => (
-                <li key={item}>
-                  <a
-                    href={`#${item.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`}
-                    className="hover:text-[#C5A059] transition-colors"
-                  >
-                    {item}
+              {[
+                ['Home', '#hero'],
+                ['Rooms', '#rooms'],
+                ['Cafe & Dining', '#cafe'],
+                ['Gallery', '#gallery'],
+                ['About Us', '#about'],
+                ['Contact', '#contact'],
+              ].map(([label, href]) => (
+                <li key={label}>
+                  <a href={href} className="hover:text-[#ECC46C] transition-colors inline-block py-1">
+                    {label}
                   </a>
                 </li>
               ))}
@@ -103,19 +107,19 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-[#C5A059] shrink-0" />
-                <a href={`tel:${siteConfig.phone}`} className="text-[#C5A059] hover:underline">{siteConfig.phone}</a>
+                <a href={`tel:${siteConfig.phoneTel}`} className="text-[#ECC46C] hover:underline">{siteConfig.phone}</a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-[#C5A059] shrink-0" />
-                <span>{siteConfig.email}</span>
+                <a href={`mailto:${siteConfig.email}`} className="hover:text-[#ECC46C] transition-colors">{siteConfig.email}</a>
               </li>
             </ul>
           </div>
 
         </div>
 
-        <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-          <p>&copy; {new Date().getFullYear()} 87 Ahangama. All rights reserved.</p>
+        <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+          <p>&copy; <span suppressHydrationWarning>{new Date().getFullYear()}</span> 87 Ahangama. All rights reserved.</p>
           <p className="flex items-center gap-1">
             Developed with <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500 mx-0.5 inline" /> by{' '}
             <a

@@ -3,6 +3,7 @@ export const siteConfig = {
   tagline: "A Tranquil Coastal Escape",
   subtagline: "Where relaxation meets nature in perfect harmony",
   phone: "+94 74 208 7870",
+  phoneTel: "+94742087870",
   email: "info@87ahangama.com",
   address: "X98G+9VQ, Ahangama 80650, Sri Lanka",
   googleMapsUrl: "https://maps.app.goo.gl/JCFjTQmnwqfHdufQ7",
@@ -16,6 +17,7 @@ export const siteConfig = {
   },
   logo: "/assets/images/87-logo-official.png",
   heroBg: "/assets/images/real/property-exterior.jpg",
+  url: "https://87ahangama.com",
   web3formsAccessKey: "" // Add Web3Forms Access Key here or via VITE_WEB3FORMS_ACCESS_KEY env variable
 };
 
@@ -38,7 +40,14 @@ export const roomsData = [
       "/assets/images/real/sun-room.jpg",
       "/assets/images/real/private-patio.jpg",
       "/assets/images/real/bathroom-1.jpg",
-      "/assets/images/real/bathroom-2.jpg"
+      "/assets/images/real/bathroom-2.jpg",
+      "/assets/images/real/sun-room-bed-front.jpg",
+      "/assets/images/real/sun-room-bed-window.jpg",
+      "/assets/images/real/sun-room-interior-tv.jpg",
+      "/assets/images/real/coral-stone-suite-entrance.jpg",
+      "/assets/images/real/suite-private-entrance-sunburst.jpg",
+      "/assets/images/real/bathroom-vanity-sunburst.jpg",
+      "/assets/images/real/bathroom-open-shower-skylight.jpg"
     ],
     highlights: [
       "No prepayment needed — Pay at property",
@@ -80,7 +89,15 @@ export const roomsData = [
       "/assets/images/real/moon-room-interior.jpg",
       "/assets/images/real/private-patio.jpg",
       "/assets/images/real/bathroom-1.jpg",
-      "/assets/images/real/bathroom-2.jpg"
+      "/assets/images/real/bathroom-2.jpg",
+      "/assets/images/real/moon-room-bed-front.jpg",
+      "/assets/images/real/moon-room-canopy-bed.jpg",
+      "/assets/images/real/moon-room-bathroom-suite-view.jpg",
+      "/assets/images/real/suite-entrance-doorway-courtyard.jpg",
+      "/assets/images/real/patio-rope-column-gate.jpg",
+      "/assets/images/real/bathroom-vanity-sunburst.jpg",
+      "/assets/images/real/bathroom-shower-stone-floor.jpg",
+      "/assets/images/real/bathroom-open-shower-skylight.jpg"
     ],
     highlights: [
       "No prepayment needed — Pay at property",
@@ -106,6 +123,7 @@ export const roomsData = [
 ];
 
 export const galleryData = [
+  // Original Photos (Preserved)
   { id: 1, title: "87 Ahangama Property Exterior & Board", category: "Resort", url: "/assets/images/real/property-exterior.jpg" },
   { id: 2, title: "Sun Room Deluxe Suite", category: "Rooms", url: "/assets/images/real/sun-room.jpg" },
   { id: 3, title: "Moon Room Four-Poster Canopy Suite", category: "Rooms", url: "/assets/images/real/moon-room.jpg" },
@@ -113,7 +131,37 @@ export const galleryData = [
   { id: 5, title: "Tropical Private Entry & Coral Stone Patio", category: "Resort", url: "/assets/images/real/private-patio.jpg" },
   { id: 6, title: "Cozy Night Garden Cafe & Fairy Lights", category: "Cafe", url: "/assets/images/real/night-garden-dining.jpg" },
   { id: 7, title: "Artisanal Earthen Bathroom & Sunburst Mirror", category: "Bathrooms", url: "/assets/images/real/bathroom-1.jpg" },
-  { id: 8, title: "Luxury Bath Vanity & Bamboo Towel Rack", category: "Bathrooms", url: "/assets/images/real/bathroom-2.jpg" }
+  { id: 8, title: "Luxury Bath Vanity & Bamboo Towel Rack", category: "Bathrooms", url: "/assets/images/real/bathroom-2.jpg" },
+
+  // Newly Added Photos
+  { id: 9, title: "87 Ahangama Coastal Retreat & Villa Grounds", category: "Resort", url: "/assets/images/real/resort-property-landscape.jpg" },
+  { id: 10, title: "Sunlit Resort Villa & Tropical Lawns", category: "Resort", url: "/assets/images/real/resort-villa-exterior-day.jpg" },
+  { id: 11, title: "Resort Entrance Avenue & 87 Ahangama Signboard", category: "Resort", url: "/assets/images/real/resort-sign-entrance-path.jpg" },
+  { id: 12, title: "Villa Front Grounds, Driveway & Surfboard", category: "Resort", url: "/assets/images/real/villa-front-lawn-surfboard.jpg" },
+  { id: 13, title: "Artisanal Coral Stone Wall Suite Entrance", category: "Resort", url: "/assets/images/real/coral-stone-suite-entrance.jpg" },
+  { id: 14, title: "Private Suite Entrance Alley with Sunburst Wall Relief", category: "Resort", url: "/assets/images/real/suite-private-entrance-sunburst.jpg" },
+  { id: 15, title: "Suite Private Doorway & Garden Courtyard", category: "Resort", url: "/assets/images/real/suite-entrance-doorway-courtyard.jpg" },
+  { id: 16, title: "Private Patio with Rope Column & Slat Gate", category: "Resort", url: "/assets/images/real/patio-rope-column-gate.jpg" },
+  { id: 17, title: "Sun Room Deluxe Suite Extra-Large Double Bed", category: "Rooms", url: "/assets/images/real/sun-room-bed-front.jpg" },
+  { id: 18, title: "Sun Room Bed, Garden Window & Linen Drapery", category: "Rooms", url: "/assets/images/real/sun-room-bed-window.jpg" },
+  { id: 19, title: "Sun Room Interior, Flat TV, Minibar & Teak Door", category: "Rooms", url: "/assets/images/real/sun-room-interior-tv.jpg" },
+  { id: 20, title: "Moon Room Teak Four-Poster Canopy Bed Suite", category: "Rooms", url: "/assets/images/real/moon-room-bed-front.jpg" },
+  { id: 21, title: "Moon Room Four-Poster Bed with Swan Towel Art", category: "Rooms", url: "/assets/images/real/moon-room-canopy-bed.jpg" },
+  { id: 22, title: "Moon Room Suite View from En-Suite Earthen Vanity", category: "Rooms", url: "/assets/images/real/moon-room-bathroom-suite-view.jpg" },
+  { id: 23, title: "Artisanal Earthen Vanity with Sunburst Mirror", category: "Bathrooms", url: "/assets/images/real/bathroom-vanity-sunburst.jpg" },
+  { id: 24, title: "Semi-Open Rain Shower with Stone Floor & Skylight", category: "Bathrooms", url: "/assets/images/real/bathroom-open-shower-skylight.jpg" },
+  { id: 25, title: "Rustic Earthen Shower with Woven Pendant Lantern", category: "Bathrooms", url: "/assets/images/real/bathroom-shower-stone-floor.jpg" },
+  { id: 26, title: "87 Cafe Covered Outdoor Pergola Dining", category: "Cafe", url: "/assets/images/real/cafe-outdoor-pergola-tables.jpg" },
+  { id: 27, title: "Cozy Night Cafe Pergola Dining with Warm Lanterns", category: "Cafe", url: "/assets/images/real/cafe-night-pergola-dining.jpg" },
+  { id: 28, title: "Evening Garden Dining Under Palm Trees & Fairy Lights", category: "Cafe", url: "/assets/images/real/garden-night-dining-lawn.jpg" },
+  { id: 29, title: "Boho Garden Dining Nook with Vintage Cane Chair", category: "Cafe", url: "/assets/images/real/garden-rattan-chair-patio.jpg" },
+  { id: 30, title: "Illuminated Garden Lawn & Villa Facade by Night", category: "Gardens", url: "/assets/images/real/resort-night-garden-villa.jpg" },
+  { id: 31, title: "Ambient Night Walkway with Round Earthen Walls", category: "Gardens", url: "/assets/images/real/night-earthen-walkway.jpg" },
+  { id: 32, title: "Tropical Thatched Garden Cabana with Festoon Lights", category: "Gardens", url: "/assets/images/real/garden-thatched-cabana.jpg" },
+  { id: 33, title: "Artisanal Thatched Lamp, Vintage Bell & Surfboard Decor", category: "Gardens", url: "/assets/images/real/boho-decor-bell-surfboard.jpg" },
+  { id: 34, title: "Lush Tropical Garden Lawn with Plumeria Flowers", category: "Gardens", url: "/assets/images/real/tropical-garden-surfboard.jpg" },
+  { id: 35, title: "Curved Earthen Structure Pebble Pathway", category: "Gardens", url: "/assets/images/real/earthen-pathway-walkway.jpg" },
+  { id: 36, title: "Sunlit Garden Courtyard with Blackboard Menu", category: "Gardens", url: "/assets/images/real/resort-garden-cafe-lawn.jpg" }
 ];
 
 export const cafeMenuFull = [

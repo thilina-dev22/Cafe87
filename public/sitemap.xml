@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://87ahangama.com/</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <image:image><image:loc>https://87ahangama.com/assets/images/real/resort-villa-exterior-day.jpg</image:loc><image:title>87 Ahangama boutique villa and tropical lawns</image:title></image:image>
+    <image:image><image:loc>https://87ahangama.com/assets/images/real/sun-room.jpg</image:loc><image:title>Sun Room at 87 Ahangama</image:title></image:image>
+    <image:image><image:loc>https://87ahangama.com/assets/images/real/moon-room.jpg</image:loc><image:title>Moon Room four-poster canopy suite at 87 Ahangama</image:title></image:image>
+    <image:image><image:loc>https://87ahangama.com/assets/images/real/cafe-night-pergola-dining.jpg</image:loc><image:title>87 Cafe pergola dining at night</image:title></image:image>
   </url>
 </urlset>
