@@ -8,6 +8,11 @@ import About from './components/About';
 import Contact from './components/Contact';
 import BookingModal from './components/BookingModal';
 import Footer from './components/Footer';
+import AdminPanel from './components/admin/AdminPanel.jsx';
+import { AdminProvider } from './hooks/useAdmin.jsx';
+
+// Simple client-side routing — /admin shows the admin panel
+const isAdminRoute = typeof window !== 'undefined' && window.location.pathname.startsWith('/admin');
 
 export default function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -17,6 +22,14 @@ export default function App() {
     setSelectedRoomForBooking(room);
     setIsBookingOpen(true);
   };
+
+  if (isAdminRoute) {
+    return (
+      <AdminProvider>
+        <AdminPanel />
+      </AdminProvider>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#0A0D12] overflow-x-hidden">

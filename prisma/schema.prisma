@@ -1,0 +1,118 @@
+// Cafe87 — Prisma Schema
+// Same stack as HMS: PostgreSQL via Neon/Supabase, Prisma ORM
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ─── Admin ────────────────────────────────────────────────────────────────────
+
+model Admin {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+// ─── Rooms ────────────────────────────────────────────────────────────────────
+
+model Room {
+  id           Int         @id @default(autoincrement())
+  slug         String      @unique
+  name         String
+  subtitle     String
+  description  String
+  price        String?     // e.g. "From $24" — optional (can be hidden on public site)
+  pricePeriod  String?     // e.g. "per night"
+  size         String?
+  capacity     String?
+  bed          String?
+  view         String?
+  bookingUrl   String?
+  agodaUrl     String?
+  highlights   String[]    // JSON array of strings
+  features     String[]    // JSON array of strings
+  sortOrder    Int         @default(0)
+  isActive     Boolean     @default(true)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  photos       RoomPhoto[]
+}
+
+model RoomPhoto {
+  id          Int      @id @default(autoincrement())
+  roomId      Int
+  room        Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  url         String   // HTTPS URL or data: URL (base64)
+  caption     String?
+  isPreview   Boolean  @default(false)  // The main card preview photo
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+}
+
+// ─── Cafe Menu ────────────────────────────────────────────────────────────────
+
+model MenuCategory {
+  id          Int            @id @default(autoincrement())
+  slug        String         @unique
+  name        String
+  subtitle    String?
+  icon        String?        // lucide icon name or emoji
+  badge       String?        // e.g. "Popular"
+  sortOrder   Int            @default(0)
+  isActive    Boolean        @default(true)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  subsections MenuSubsection[]
+  items       MenuItem[]     // direct items (no subsection)
+  addons      MenuAddon[]
+}
+
+model MenuSubsection {
+  id         Int          @id @default(autoincrement())
+  categoryId Int
+  category   MenuCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  subtitle   String
+  sortOrder  Int          @default(0)
+  items      MenuItem[]
+}
+
+model MenuItem {
+  id           Int             @id @default(autoincrement())
+  categoryId   Int?
+  category     MenuCategory?   @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  subsectionId Int?
+  subsection   MenuSubsection? @relation(fields: [subsectionId], references: [id], onDelete: Cascade)
+  name         String
+  price        String?         // e.g. "LKR 2,450" — optional
+  desc         String?
+  sortOrder    Int             @default(0)
+  isActive     Boolean         @default(true)
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+}
+
+model MenuAddon {
+  id         Int          @id @default(autoincrement())
+  categoryId Int
+  category   MenuCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  name       String
+  price      String?
+  sortOrder  Int          @default(0)
+}
+
+// ─── Site Settings ────────────────────────────────────────────────────────────
+
+model SiteSetting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}

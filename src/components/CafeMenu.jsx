@@ -1,9 +1,11 @@
 import React, { useState, useRef } from 'react';
-import { cafeMenuFull, cafeMenuImage } from '../data/siteData';
+import { cafeMenuImage } from '../data/siteData';
+import { useMenu } from '../hooks/useMenu.jsx';
 import useDialogKeys from '../hooks/useDialogKeys';
 import { Coffee, Utensils, Search, Maximize2, X, Download, Clock, Wine, Cookie, Sparkles, Moon, ChevronRight, ChevronLeft, ArrowLeft, ArrowRight } from 'lucide-react';
 
 export default function CafeMenu() {
+  const { menu: cafeMenuFull, showPrices } = useMenu();
   const [activeCategory, setActiveCategory] = useState('all-day-brunch');
   const [searchQuery, setSearchQuery] = useState('');
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
@@ -293,9 +295,11 @@ export default function CafeMenu() {
                             <h4 className="font-semibold text-sm sm:text-base text-white">
                               {item.name}
                             </h4>
-                            <span className="shrink-0 font-bold text-[#ECC46C] text-sm sm:text-base font-serif">
-                              {item.price}
-                            </span>
+                            {showPrices && item.price && (
+                              <span className="shrink-0 font-bold text-[#ECC46C] text-sm sm:text-base font-serif">
+                                {item.price}
+                              </span>
+                            )}
                           </div>
                           {item.desc && (
                             <p className="text-gray-400 text-xs leading-relaxed">
@@ -328,9 +332,11 @@ export default function CafeMenu() {
                                     </span>
                                   )}
                                 </div>
-                                <span className="shrink-0 font-bold text-[#ECC46C] text-xs sm:text-sm font-serif">
-                                  {item.price}
-                                </span>
+                                {showPrices && item.price && (
+                                  <span className="shrink-0 font-bold text-[#ECC46C] text-xs sm:text-sm font-serif">
+                                    {item.price}
+                                  </span>
+                                )}
                               </div>
                             ))}
                           </div>
@@ -352,7 +358,7 @@ export default function CafeMenu() {
                             className="flex items-center gap-2 text-xs text-gray-200 bg-[#0A0F29]/80 py-1.5 px-3 rounded-lg border border-[#ECC46C]/20"
                           >
                             <span>+ {add.name}</span>
-                            <span className="font-bold text-[#ECC46C]">{add.price}</span>
+                            {showPrices && add.price && <span className="font-bold text-[#ECC46C]">{add.price}</span>}
                           </div>
                         ))}
                       </div>

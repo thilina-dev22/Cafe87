@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import Img from './Img';
 import useDialogKeys from '../hooks/useDialogKeys';
-import { roomsData } from '../data/siteData';
+import { useRooms } from '../hooks/useRooms.jsx';
 import { Bed, Users, Maximize, CheckCircle, ShieldCheck, X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 
 export default function Rooms({ onBookRoom }) {
+  const { rooms: roomsData } = useRooms();
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [activeImageIdx, setActiveImageIdx] = useState(0);
 
