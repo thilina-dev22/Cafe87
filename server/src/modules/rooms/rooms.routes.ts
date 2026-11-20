@@ -6,6 +6,11 @@ import { requireAdmin } from '../../middleware/requireAdmin.js';
 
 export const roomsRouter = Router();
 
+const toInt = (val: string | string[] | undefined): number => {
+  const str = Array.isArray(val) ? val[0] : val;
+  return str ? parseInt(str, 10) : NaN;
+};
+
 // ─── Validation Schemas ───────────────────────────────────────────────────────
 
 const PhotoSchema = z.object({
@@ -57,8 +62,9 @@ roomsRouter.get('/', async (_req, res) => {
 // GET /api/rooms/:slug  — public single room
 roomsRouter.get('/:slug', async (req, res) => {
   try {
+    const slug = Array.isArray(req.params.slug) ? req.params.slug[0] : req.params.slug;
     const room = await prisma.room.findUnique({
-      where: { slug: req.params.slug },
+      where: { slug },
       include: { photos: { orderBy: { sortOrder: 'asc' } } },
     });
     if (!room || !room.isActive) {
@@ -128,7 +134,7 @@ roomsRouter.post('/admin', requireAdmin, async (req, res) => {
 // PUT /api/admin/rooms/:id  — update room
 roomsRouter.put('/admin/:id', requireAdmin, async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
+    const id = toInt(req.params.id);
     if (isNaN(id)) { res.status(400).json({ error: 'Invalid room id' }); return; }
 
     const data = RoomSchema.partial().parse(req.body);
@@ -154,7 +160,7 @@ roomsRouter.put('/admin/:id', requireAdmin, async (req, res) => {
 // DELETE /api/admin/rooms/:id
 roomsRouter.delete('/admin/:id', requireAdmin, async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
+    const id = toInt(req.params.id);
     if (isNaN(id)) { res.status(400).json({ error: 'Invalid room id' }); return; }
     await prisma.room.delete({ where: { id } });
     res.json({ success: true });
@@ -170,7 +176,7 @@ roomsRouter.delete('/admin/:id', requireAdmin, async (req, res) => {
 // POST /api/admin/rooms/:id/photos  — add photo(s)
 roomsRouter.post('/admin/:id/photos', requireAdmin, async (req, res) => {
   try {
-    const roomId = parseInt(req.params.id);
+    const roomId = toInt(req.params.id);
     if (isNaN(roomId)) { res.status(400).json({ error: 'Invalid room id' }); return; }
 
     const body = z.object({ photos: z.array(PhotoSchema).min(1).max(20) }).parse(req.body);
@@ -208,7 +214,7 @@ roomsRouter.post('/admin/:id/photos', requireAdmin, async (req, res) => {
 // PATCH /api/admin/rooms/photos/:photoId  — update single photo (caption, isPreview, sortOrder)
 roomsRouter.patch('/admin/photos/:photoId', requireAdmin, async (req, res) => {
   try {
-    const photoId = parseInt(req.params.photoId);
+    const photoId = toInt(req.params.photoId);
     if (isNaN(photoId)) { res.status(400).json({ error: 'Invalid photo id' }); return; }
 
     const body = z.object({
@@ -240,7 +246,7 @@ roomsRouter.patch('/admin/photos/:photoId', requireAdmin, async (req, res) => {
 // DELETE /api/admin/rooms/photos/:photoId
 roomsRouter.delete('/admin/photos/:photoId', requireAdmin, async (req, res) => {
   try {
-    const photoId = parseInt(req.params.photoId);
+    const photoId = toInt(req.params.photoId);
     if (isNaN(photoId)) { res.status(400).json({ error: 'Invalid photo id' }); return; }
     await prisma.roomPhoto.delete({ where: { id: photoId } });
     res.json({ success: true });

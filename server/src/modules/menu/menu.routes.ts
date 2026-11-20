@@ -6,6 +6,11 @@ import { requireAdmin } from '../../middleware/requireAdmin.js';
 
 export const menuRouter = Router();
 
+const toInt = (val: string | string[] | undefined): number => {
+  const str = Array.isArray(val) ? val[0] : val;
+  return str ? parseInt(str, 10) : NaN;
+};
+
 // ─── Schemas ──────────────────────────────────────────────────────────────────
 
 const ItemSchema = z.object({
@@ -111,7 +116,7 @@ menuRouter.post('/admin/categories', requireAdmin, async (req, res) => {
 // PUT /api/admin/menu/categories/:id
 menuRouter.put('/admin/categories/:id', requireAdmin, async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
+    const id = toInt(req.params.id);
     if (isNaN(id)) { res.status(400).json({ error: 'Invalid id' }); return; }
     const data = CategorySchema.partial().parse(req.body);
     const category = await prisma.menuCategory.update({ where: { id }, data });
@@ -127,7 +132,7 @@ menuRouter.put('/admin/categories/:id', requireAdmin, async (req, res) => {
 // DELETE /api/admin/menu/categories/:id
 menuRouter.delete('/admin/categories/:id', requireAdmin, async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
+    const id = toInt(req.params.id);
     if (isNaN(id)) { res.status(400).json({ error: 'Invalid id' }); return; }
     await prisma.menuCategory.delete({ where: { id } });
     res.json({ success: true });
@@ -143,7 +148,7 @@ menuRouter.delete('/admin/categories/:id', requireAdmin, async (req, res) => {
 // POST /api/admin/menu/categories/:categoryId/subsections
 menuRouter.post('/admin/categories/:categoryId/subsections', requireAdmin, async (req, res) => {
   try {
-    const categoryId = parseInt(req.params.categoryId);
+    const categoryId = toInt(req.params.categoryId);
     if (isNaN(categoryId)) { res.status(400).json({ error: 'Invalid category id' }); return; }
     const data = SubsectionSchema.parse(req.body);
     const { items, ...subData } = data;
@@ -166,7 +171,7 @@ menuRouter.post('/admin/categories/:categoryId/subsections', requireAdmin, async
 // PUT /api/admin/menu/subsections/:id
 menuRouter.put('/admin/subsections/:id', requireAdmin, async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
+    const id = toInt(req.params.id);
     if (isNaN(id)) { res.status(400).json({ error: 'Invalid id' }); return; }
     const data = SubsectionSchema.partial().omit({ items: true }).parse(req.body);
     const updated = await prisma.menuSubsection.update({ where: { id }, data, include: { items: true } });
@@ -181,7 +186,7 @@ menuRouter.put('/admin/subsections/:id', requireAdmin, async (req, res) => {
 // DELETE /api/admin/menu/subsections/:id
 menuRouter.delete('/admin/subsections/:id', requireAdmin, async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
+    const id = toInt(req.params.id);
     if (isNaN(id)) { res.status(400).json({ error: 'Invalid id' }); return; }
     await prisma.menuSubsection.delete({ where: { id } });
     res.json({ success: true });
@@ -197,7 +202,7 @@ menuRouter.delete('/admin/subsections/:id', requireAdmin, async (req, res) => {
 // POST /api/admin/menu/categories/:categoryId/items
 menuRouter.post('/admin/categories/:categoryId/items', requireAdmin, async (req, res) => {
   try {
-    const categoryId = parseInt(req.params.categoryId);
+    const categoryId = toInt(req.params.categoryId);
     if (isNaN(categoryId)) { res.status(400).json({ error: 'Invalid category id' }); return; }
     const data = ItemSchema.parse(req.body);
     const item = await prisma.menuItem.create({ data: { ...data, categoryId } });
@@ -212,7 +217,7 @@ menuRouter.post('/admin/categories/:categoryId/items', requireAdmin, async (req,
 // PUT /api/admin/menu/items/:id
 menuRouter.put('/admin/items/:id', requireAdmin, async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
+    const id = toInt(req.params.id);
     if (isNaN(id)) { res.status(400).json({ error: 'Invalid id' }); return; }
     const data = ItemSchema.partial().parse(req.body);
     const item = await prisma.menuItem.update({ where: { id }, data });
@@ -228,7 +233,7 @@ menuRouter.put('/admin/items/:id', requireAdmin, async (req, res) => {
 // DELETE /api/admin/menu/items/:id
 menuRouter.delete('/admin/items/:id', requireAdmin, async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
+    const id = toInt(req.params.id);
     if (isNaN(id)) { res.status(400).json({ error: 'Invalid id' }); return; }
     await prisma.menuItem.delete({ where: { id } });
     res.json({ success: true });
@@ -244,7 +249,7 @@ menuRouter.delete('/admin/items/:id', requireAdmin, async (req, res) => {
 // POST /api/admin/menu/categories/:categoryId/addons
 menuRouter.post('/admin/categories/:categoryId/addons', requireAdmin, async (req, res) => {
   try {
-    const categoryId = parseInt(req.params.categoryId);
+    const categoryId = toInt(req.params.categoryId);
     if (isNaN(categoryId)) { res.status(400).json({ error: 'Invalid category id' }); return; }
     const data = AddonSchema.parse(req.body);
     const addon = await prisma.menuAddon.create({ data: { ...data, categoryId } });
@@ -259,7 +264,7 @@ menuRouter.post('/admin/categories/:categoryId/addons', requireAdmin, async (req
 // PUT /api/admin/menu/addons/:id
 menuRouter.put('/admin/addons/:id', requireAdmin, async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
+    const id = toInt(req.params.id);
     if (isNaN(id)) { res.status(400).json({ error: 'Invalid id' }); return; }
     const data = AddonSchema.partial().parse(req.body);
     const addon = await prisma.menuAddon.update({ where: { id }, data });
@@ -274,7 +279,7 @@ menuRouter.put('/admin/addons/:id', requireAdmin, async (req, res) => {
 // DELETE /api/admin/menu/addons/:id
 menuRouter.delete('/admin/addons/:id', requireAdmin, async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
+    const id = toInt(req.params.id);
     if (isNaN(id)) { res.status(400).json({ error: 'Invalid id' }); return; }
     await prisma.menuAddon.delete({ where: { id } });
     res.json({ success: true });
